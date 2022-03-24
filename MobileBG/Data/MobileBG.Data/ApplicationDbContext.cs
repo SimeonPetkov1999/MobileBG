@@ -26,6 +26,18 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
 
     public DbSet<Setting> Settings { get; set; }
 
+    public DbSet<Car> Cars { get; set; }
+
+    public DbSet<City> Cities { get; set; }
+
+    public DbSet<Image> Images { get; set; }
+
+    public DbSet<Make> Makes { get; set; }
+
+    public DbSet<Model> Models { get; set; }
+
+    public DbSet<PetrolType> PetrolTypes { get; set; }
+
     public override int SaveChanges() => this.SaveChanges(true);
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
