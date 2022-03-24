@@ -1,23 +1,21 @@
-﻿namespace MobileBG.Web.Areas.Administration.Controllers
+﻿namespace MobileBG.Web.Areas.Administration.Controllers;
+
+using MobileBG.Web.ViewModels.Administration.Dashboard;
+using MobileBG.Services.Data;
+using Microsoft.AspNetCore.Mvc;
+
+public class DashboardController : AdministrationController
 {
-    using MobileBG.Services.Data;
-    using MobileBG.Web.ViewModels.Administration.Dashboard;
+    private readonly ISettingsService settingsService;
 
-    using Microsoft.AspNetCore.Mvc;
-
-    public class DashboardController : AdministrationController
+    public DashboardController(ISettingsService settingsService)
     {
-        private readonly ISettingsService settingsService;
+        this.settingsService = settingsService;
+    }
 
-        public DashboardController(ISettingsService settingsService)
-        {
-            this.settingsService = settingsService;
-        }
-
-        public IActionResult Index()
-        {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
-            return this.View(viewModel);
-        }
+    public IActionResult Index()
+    {
+        var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
+        return this.View(viewModel);
     }
 }

@@ -1,10 +1,8 @@
-﻿namespace MobileBG.Data.Common
-{
-    using System;
-    using System.Threading.Tasks;
+﻿namespace MobileBG.Data.Common;
+using System;
+using System.Threading.Tasks;
 
-    public interface IDbQueryRunner : IDisposable
-    {
-        Task RunQueryAsync(string query, params object[] parameters);
-    }
+public interface IDbQueryRunner : IDisposable
+{
+    Task RunQueryAsync(string query, params object[] parameters);
 }

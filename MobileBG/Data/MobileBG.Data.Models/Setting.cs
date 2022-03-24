@@ -1,11 +1,9 @@
-﻿namespace MobileBG.Data.Models
+﻿namespace MobileBG.Data.Models;
+using MobileBG.Data.Common.Models;
+
+public class Setting : BaseDeletableModel<int>
 {
-    using MobileBG.Data.Common.Models;
+    public string Name { get; set; }
 
-    public class Setting : BaseDeletableModel<int>
-    {
-        public string Name { get; set; }
-
-        public string Value { get; set; }
-    }
+    public string Value { get; set; }
 }

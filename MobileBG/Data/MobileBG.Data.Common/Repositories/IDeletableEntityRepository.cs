@@ -1,18 +1,16 @@
-﻿namespace MobileBG.Data.Common.Repositories
+﻿namespace MobileBG.Data.Common.Repositories;
+using System.Linq;
+
+using MobileBG.Data.Common.Models;
+
+public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
+    where TEntity : class, IDeletableEntity
 {
-    using System.Linq;
+    IQueryable<TEntity> AllWithDeleted();
 
-    using MobileBG.Data.Common.Models;
+    IQueryable<TEntity> AllAsNoTrackingWithDeleted();
 
-    public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
-        where TEntity : class, IDeletableEntity
-    {
-        IQueryable<TEntity> AllWithDeleted();
+    void HardDelete(TEntity entity);
 
-        IQueryable<TEntity> AllAsNoTrackingWithDeleted();
-
-        void HardDelete(TEntity entity);
-
-        void Undelete(TEntity entity);
-    }
+    void Undelete(TEntity entity);
 }

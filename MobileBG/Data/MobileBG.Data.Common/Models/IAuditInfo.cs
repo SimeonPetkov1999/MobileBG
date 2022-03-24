@@ -1,11 +1,9 @@
-﻿namespace MobileBG.Data.Common.Models
+﻿namespace MobileBG.Data.Common.Models;
+using System;
+
+public interface IAuditInfo
 {
-    using System;
+    DateTime CreatedOn { get; set; }
 
-    public interface IAuditInfo
-    {
-        DateTime CreatedOn { get; set; }
-
-        DateTime? ModifiedOn { get; set; }
-    }
+    DateTime? ModifiedOn { get; set; }
 }

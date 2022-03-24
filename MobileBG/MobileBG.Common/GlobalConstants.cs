@@ -1,9 +1,7 @@
-﻿namespace MobileBG.Common
+﻿namespace MobileBG.Common;
+public static class GlobalConstants
 {
-    public static class GlobalConstants
-    {
-        public const string SystemName = "MobileBG";
+    public const string SystemName = "MobileBG";
 
-        public const string AdministratorRoleName = "Administrator";
-    }
+    public const string AdministratorRoleName = "Administrator";
 }
