@@ -33,5 +33,5 @@ public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
 
     public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-    public ICollection<Car> Cars { get; set; }
+    public ICollection<CarEntity> Cars { get; set; }
 }

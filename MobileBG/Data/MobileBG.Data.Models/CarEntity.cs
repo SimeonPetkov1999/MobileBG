@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using MobileBG.Data.Common.Models;
 
-public class Car : BaseModel<Guid>
+public class CarEntity : BaseModel<Guid>
 {
     public Guid MakeId { get; set; }
 
-    public Make Make { get; set; }
+    public MakeEntity Make { get; set; }
 
     public Guid ModelId { get; set; }
 
-    public Model Model { get; set; }
+    public ModelEntity Model { get; set; }
 
     public Guid PetrolTypeId { get; set; }
 
-    public PetrolType PetrolType { get; set; }
+    public PetrolTypeEntity PetrolType { get; set; }
 
     public Guid CityId { get; set; }
 
-    public City City { get; set; }
+    public CityEntity City { get; set; }
 
     public decimal Price { get; set; }
 
@@ -36,5 +36,5 @@ public class Car : BaseModel<Guid>
 
     public ApplicationUser User { get; set; }
 
-    public ICollection<Image> Images { get; set; } = new HashSet<Image>();
+    public ICollection<ImageEntity> Images { get; set; } = new HashSet<ImageEntity>();
 }

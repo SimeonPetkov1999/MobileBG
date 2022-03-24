@@ -4,9 +4,9 @@ using MobileBG.Data.Common.Models;
 using System;
 using System.Collections.Generic;
 
-public class City : BaseModel<Guid>
+public class CityEntity : BaseModel<Guid>
 {
     public string Name { get; set; }
 
-    public ICollection<Car> Cars { get; set; } = new HashSet<Car>();
+    public ICollection<CarEntity> Cars { get; set; } = new HashSet<CarEntity>();
 }

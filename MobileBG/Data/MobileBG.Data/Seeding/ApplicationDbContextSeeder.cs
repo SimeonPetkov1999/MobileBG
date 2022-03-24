@@ -27,6 +27,9 @@ public class ApplicationDbContextSeeder : ISeeder
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new MakeModelSeeder(),
+                              new CitiesSeeder(),
+                              new PetrolTypeSeeder(),
                           };
 
         foreach (var seeder in seeders)
