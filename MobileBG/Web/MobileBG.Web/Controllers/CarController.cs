@@ -18,9 +18,16 @@ public class CarController : BaseController
     public async Task<IActionResult> Create()
     {
         var makes = await this.carService.GetAllMakesAsync();
+        var petrolTypes = await this.carService.GetAllPetrolTypesAsync();
+        var cities = await this.carService.GetAllCitiesAsync();
 
-        var model = new CreateCarInputViewModel();
-        model.Makes = makes;
+        var model = new CreateCarInputViewModel()
+        {
+            Makes = makes,
+            PetrolTypes = petrolTypes,
+            Cities = cities,
+        };
+
         return this.View(model);
     }
 

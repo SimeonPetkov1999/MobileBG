@@ -6,27 +6,27 @@ using MobileBG.Data.Common.Models;
 
 public class CarEntity : BaseModel<Guid>
 {
-    public Guid MakeId { get; set; }
+    public Guid MakeId { get; set; }//
 
-    public MakeEntity Make { get; set; }
+    public MakeEntity Make { get; set; }//
 
-    public Guid ModelId { get; set; }
+    public Guid ModelId { get; set; }//
 
-    public ModelEntity Model { get; set; }
+    public ModelEntity Model { get; set; }//
 
-    public Guid PetrolTypeId { get; set; }
+    public Guid PetrolTypeId { get; set; }//
 
-    public PetrolTypeEntity PetrolType { get; set; }
+    public PetrolTypeEntity PetrolType { get; set; }//
 
-    public Guid CityId { get; set; }
+    public Guid CityId { get; set; }//
 
-    public CityEntity City { get; set; }
+    public CityEntity City { get; set; }//
 
     public decimal Price { get; set; }
 
-    public int YearMade { get; set; }
+    public int YearMade { get; set; }//
 
-    public int HorsePower { get; set; }
+    public int HorsePower { get; set; }//
 
     public string Description { get; set; }
 

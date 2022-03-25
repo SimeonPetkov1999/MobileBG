@@ -2,7 +2,65 @@
 
 @model CreateCarInputViewModel
 
-@foreach (var item in this.Model.Makes)
-{
-    <p>@item.Name @item.Id</p>
-}
+
+<div class="container">
+    <div class="row">
+        <div class="offset-lg-2 col-lg-8 col-sm-12 offset-xl-3 col-xl-6">
+            <form method="post">
+
+                <div class="form-group">
+                    <label asp-for="MakeId"></label>
+                    <select id="makes" asp-for="MakeId" class="form-control">
+                        @foreach (var make in Model.Makes)
+                        {
+                            <option value="@make.Id">@make.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MakeId" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ModelId"></label>
+                    <select class="form-control" id='models' asp-for="ModelId">
+                    </select>
+                    <span asp-validation-for="ModelId" class="small text-danger"></span>
+                </div>
+
+                 <div class="form-group">
+                    <label asp-for="PetrolTypeId"></label>
+                    <select asp-for="PetrolTypeId" class="form-control">
+                        @foreach (var type in Model.PetrolTypes)
+                        {
+                            <option value="@type.Id">@type.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="PetrolTypeId" class="small text-danger"></span>
+                </div>
+
+                 <div class="form-group">
+                    <label asp-for="CityId"></label>
+                    <select asp-for="CityId" class="form-control">
+                        @foreach (var city in Model.Cities)
+                        {
+                            <option value="@city.Id">@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CityId" class="small text-danger"></span>
+                </div>
+
+                 <div class="form-group">
+                    <label asp-for="YearMade"></label>
+                    <input asp-for="YearMade" class="form-control" />
+                    <span asp-validation-for="YearMade" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input asp-for="HorsePower" class="form-control" />
+                    <span asp-validation-for="HorsePower" class="small text-danger"></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
