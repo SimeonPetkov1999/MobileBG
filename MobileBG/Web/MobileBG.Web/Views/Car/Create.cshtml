@@ -1,0 +1,8 @@
+﻿@using MobileBG.Web.ViewModels.Cars
+
+@model CreateCarInputViewModel
+
+@foreach (var item in this.Model.Makes)
+{
+    <p>@item.Name @item.Id</p>
+}

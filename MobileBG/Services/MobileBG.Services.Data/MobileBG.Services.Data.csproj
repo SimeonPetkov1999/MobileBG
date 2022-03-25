@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MobileBG.Data.Common\MobileBG.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MobileBG.Data.Models\MobileBG.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\MobileBG.Web.ViewModels\MobileBG.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MobileBG.Services.Mapping\MobileBG.Services.Mapping.csproj" />
   </ItemGroup>
 
