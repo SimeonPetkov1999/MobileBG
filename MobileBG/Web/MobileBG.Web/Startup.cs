@@ -21,6 +21,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MobileBG.Services.Data.Contracts;
+using MobileBG.Services.Contracts;
+using MobileBG.Services;
 
 public class Startup
 {
@@ -67,6 +69,7 @@ public class Startup
         services.AddTransient<ISettingsService, SettingsService>();
         services.AddTransient<ICarService, CarService>();
         services.AddTransient<IModelService, ModelService>();
+        services.AddTransient<ICloudinaryService, CloudinaryService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
