@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Http;
 using MobileBG.Data.Models;
 using MobileBG.Services.Mapping;
+using MobileBG.Web.Infrastructure.CustomAttributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -45,6 +46,8 @@ public class CreateCarInputViewModel
 
     [Display(Name = "Choose maximum 5 images (.jpg, .png)")]
     [MaxLength(5, ErrorMessage = "Maximum 5 images!")]
+    [AllowedExtensions(".jpg", ".png")]
+    [MaxFileSize(3 * 1000 * 1000)] // 3mb
     public ICollection<IFormFile> Images { get; set; }
 
     public ICollection<DropdownDataViewModel> Makes { get; set; }
