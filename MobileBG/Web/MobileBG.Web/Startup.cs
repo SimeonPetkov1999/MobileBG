@@ -1,29 +1,6 @@
 ﻿namespace MobileBG.Web;
 using System.Reflection;
 
-using MobileBG.Data;
-using MobileBG.Data.Common;
-using MobileBG.Data.Common.Repositories;
-using MobileBG.Data.Models;
-using MobileBG.Data.Repositories;
-using MobileBG.Data.Seeding;
-using MobileBG.Services.Data;
-using MobileBG.Services.Mapping;
-using MobileBG.Services.Messaging;
-using MobileBG.Web.ViewModels;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using MobileBG.Services.Data.Contracts;
-using MobileBG.Services.Contracts;
-using MobileBG.Services;
-
 public class Startup
 {
     private readonly IConfiguration configuration;

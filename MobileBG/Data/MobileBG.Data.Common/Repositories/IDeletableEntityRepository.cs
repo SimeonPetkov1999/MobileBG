@@ -1,7 +1,4 @@
 ﻿namespace MobileBG.Data.Common.Repositories;
-using System.Linq;
-
-using MobileBG.Data.Common.Models;
 
 public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
     where TEntity : class, IDeletableEntity

@@ -1,13 +1,5 @@
 ﻿namespace MobileBG.Data.Repositories;
 
-using System;
-using System.Linq;
-
-using MobileBG.Data.Common.Models;
-using MobileBG.Data.Common.Repositories;
-
-using Microsoft.EntityFrameworkCore;
-
 public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
     where TEntity : class, IDeletableEntity
 {

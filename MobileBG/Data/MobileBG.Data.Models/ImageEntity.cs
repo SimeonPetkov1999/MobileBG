@@ -1,6 +1,4 @@
 ﻿namespace MobileBG.Data.Models;
-using MobileBG.Data.Common.Models;
-using System;
 
 public class ImageEntity : BaseModel<Guid>
 {

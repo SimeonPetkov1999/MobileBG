@@ -1,8 +1,4 @@
 ﻿namespace MobileBG.Web.ViewModels.Settings;
-using MobileBG.Data.Models;
-using MobileBG.Services.Mapping;
-
-using AutoMapper;
 
 public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
 {

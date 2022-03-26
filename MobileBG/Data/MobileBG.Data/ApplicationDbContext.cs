@@ -1,17 +1,5 @@
 ﻿namespace MobileBG.Data;
 
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-
-using MobileBG.Data.Common.Models;
-using MobileBG.Data.Models;
-
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {
     private static readonly MethodInfo SetIsDeletedQueryFilterMethod =

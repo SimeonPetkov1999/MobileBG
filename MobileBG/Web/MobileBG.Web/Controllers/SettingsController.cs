@@ -1,13 +1,4 @@
 ﻿namespace MobileBG.Web.Controllers;
-using System;
-using System.Threading.Tasks;
-
-using MobileBG.Data.Common.Repositories;
-using MobileBG.Data.Models;
-using MobileBG.Services.Data;
-using MobileBG.Web.ViewModels.Settings;
-
-using Microsoft.AspNetCore.Mvc;
 
 public class SettingsController : BaseController
 {

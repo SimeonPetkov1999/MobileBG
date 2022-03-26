@@ -1,13 +1,5 @@
 ﻿namespace MobileBG.Web.Controllers;
 
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MobileBG.Services.Data.Contracts;
-using MobileBG.Web.Infrastructure;
-using MobileBG.Web.ViewModels.Cars;
-using System;
-using System.Threading.Tasks;
-
 public class CarController : BaseController
 {
     private readonly ICarService carService;

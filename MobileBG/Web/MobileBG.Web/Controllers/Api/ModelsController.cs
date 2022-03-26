@@ -1,12 +1,5 @@
 ﻿namespace MobileBG.Web.Controllers.Api;
 
-using Microsoft.AspNetCore.Mvc;
-using MobileBG.Services.Data.Contracts;
-using MobileBG.Web.ViewModels.Cars;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 [ApiController]
 [Route("api/[controller]")]
 public class ModelsController : ControllerBase

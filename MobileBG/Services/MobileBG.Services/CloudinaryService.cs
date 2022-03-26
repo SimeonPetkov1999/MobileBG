@@ -1,15 +1,5 @@
 ﻿namespace MobileBG.Services;
 
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using MobileBG.Services.Contracts;
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 public class CloudinaryService : ICloudinaryService
 {
     private Cloudinary cloudinary;

@@ -1,6 +1,4 @@
 ﻿namespace MobileBG.Web;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 public static class Program
 {

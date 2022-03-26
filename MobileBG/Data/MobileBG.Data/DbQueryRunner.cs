@@ -1,10 +1,6 @@
 ﻿namespace MobileBG.Data;
-using System;
-using System.Threading.Tasks;
 
 using MobileBG.Data.Common;
-
-using Microsoft.EntityFrameworkCore;
 
 public class DbQueryRunner : IDbQueryRunner
 {

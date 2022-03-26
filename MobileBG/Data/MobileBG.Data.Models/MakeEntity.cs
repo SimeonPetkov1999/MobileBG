@@ -1,7 +1,4 @@
 ﻿namespace MobileBG.Data.Models;
-using MobileBG.Data.Common.Models;
-using System;
-using System.Collections.Generic;
 
 public class MakeEntity : BaseModel<Guid>
 {

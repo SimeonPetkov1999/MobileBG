@@ -1,9 +1,6 @@
 ﻿namespace MobileBG.Web.Controllers;
+
 using System.Diagnostics;
-
-using MobileBG.Web.ViewModels;
-
-using Microsoft.AspNetCore.Mvc;
 
 public class HomeController : BaseController
 {

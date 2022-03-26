@@ -1,5 +1,4 @@
 ﻿namespace MobileBG.Data.Models;
-using MobileBG.Data.Common.Models;
 
 public class Setting : BaseDeletableModel<int>
 {

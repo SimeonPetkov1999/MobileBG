@@ -1,5 +1,4 @@
 ﻿namespace MobileBG.Data.Common.Models;
-using System;
 
 public interface IAuditInfo
 {

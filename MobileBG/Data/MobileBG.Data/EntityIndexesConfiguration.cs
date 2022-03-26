@@ -1,9 +1,4 @@
 ﻿namespace MobileBG.Data;
-using System.Linq;
-
-using MobileBG.Data.Common.Models;
-
-using Microsoft.EntityFrameworkCore;
 
 internal static class EntityIndexesConfiguration
 {

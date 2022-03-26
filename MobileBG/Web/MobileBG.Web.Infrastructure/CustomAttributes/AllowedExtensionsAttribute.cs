@@ -1,11 +1,5 @@
 ﻿namespace MobileBG.Web.Infrastructure.CustomAttributes;
 
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-
 public class AllowedExtensionsAttribute : ValidationAttribute
 {
     private readonly string[] extensions;

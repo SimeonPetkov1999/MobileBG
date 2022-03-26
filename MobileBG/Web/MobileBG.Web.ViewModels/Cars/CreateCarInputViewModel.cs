@@ -1,13 +1,5 @@
 ﻿namespace MobileBG.Web.ViewModels.Cars;
 
-using Microsoft.AspNetCore.Http;
-using MobileBG.Data.Models;
-using MobileBG.Services.Mapping;
-using MobileBG.Web.Infrastructure.CustomAttributes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 public class CreateCarInputViewModel
 {
     [Required(ErrorMessage = "Car brand is required")]

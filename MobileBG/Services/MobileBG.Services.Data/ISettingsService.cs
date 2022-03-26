@@ -1,5 +1,4 @@
 ﻿namespace MobileBG.Services.Data;
-using System.Collections.Generic;
 
 public interface ISettingsService
 {

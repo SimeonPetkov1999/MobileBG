@@ -1,6 +1,4 @@
 ﻿namespace MobileBG.Data.Common;
-using System;
-using System.Threading.Tasks;
 
 public interface IDbQueryRunner : IDisposable
 {

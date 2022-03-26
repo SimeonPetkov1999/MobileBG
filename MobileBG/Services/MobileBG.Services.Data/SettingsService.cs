@@ -1,10 +1,4 @@
 ﻿namespace MobileBG.Services.Data;
-using System.Collections.Generic;
-using System.Linq;
-
-using MobileBG.Data.Common.Repositories;
-using MobileBG.Data.Models;
-using MobileBG.Services.Mapping;
 
 public class SettingsService : ISettingsService
 {

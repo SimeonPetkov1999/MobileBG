@@ -1,5 +1,4 @@
 ﻿namespace MobileBG.Web.ViewModels.Settings;
-using System.Collections.Generic;
 
 public class SettingsListViewModel
 {

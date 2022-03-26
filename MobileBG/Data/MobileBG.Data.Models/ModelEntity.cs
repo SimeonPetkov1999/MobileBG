@@ -1,9 +1,5 @@
 ﻿namespace MobileBG.Data.Models;
 
-using MobileBG.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-
 public class ModelEntity : BaseModel<Guid>
 {
     public string Name { get; set; }

@@ -1,9 +1,5 @@
 ﻿namespace MobileBG.Web.Infrastructure.CustomAttributes;
 
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 public class MaxFileSizeAttribute : ValidationAttribute
 {
     private readonly int maxFileSize;

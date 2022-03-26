@@ -1,7 +1,4 @@
 ﻿namespace MobileBG.Services.Contracts;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
 
 public interface ICloudinaryService
 {

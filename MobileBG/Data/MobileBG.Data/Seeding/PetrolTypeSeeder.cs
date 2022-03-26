@@ -1,13 +1,5 @@
 ﻿namespace MobileBG.Data.Seeding;
 
-using MobileBG.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-
 public class PetrolTypeSeeder : ISeeder
 {
     public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
