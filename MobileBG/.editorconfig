@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# SA1518: Use line endings correctly at end of file
+dotnet_diagnostic.SA1518.severity = none

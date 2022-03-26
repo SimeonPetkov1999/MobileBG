@@ -2,7 +2,6 @@
 using MobileBG.Data.Common.Models;
 using System;
 
-
 public class ImageEntity : BaseModel<Guid>
 {
     public string ImageUrl { get; set; }
@@ -10,5 +9,4 @@ public class ImageEntity : BaseModel<Guid>
     public Guid CarId { get; set; }
 
     public CarEntity Car { get; set; }
-
 }

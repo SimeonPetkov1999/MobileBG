@@ -47,7 +47,7 @@ public class CarService : ICarService
             HorsePower = model.HorsePower,
             Price = model.Price,
             Description = model.Description,
-            UserId = userId
+            UserId = userId,
         };
 
         var links = new List<string>();
