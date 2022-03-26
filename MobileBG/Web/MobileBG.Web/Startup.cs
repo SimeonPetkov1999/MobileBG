@@ -46,6 +46,7 @@ public class Startup
         services.AddTransient<ISettingsService, SettingsService>();
         services.AddTransient<ICarService, CarService>();
         services.AddTransient<IModelService, ModelService>();
+        services.AddTransient<IDropDownDataService, DropDownDataService>();
         services.AddTransient<ICloudinaryService, CloudinaryService>();
     }
 

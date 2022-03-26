@@ -3,18 +3,22 @@
 public class CarController : BaseController
 {
     private readonly ICarService carService;
+    private readonly IDropDownDataService dropDownDataService;
 
-    public CarController(ICarService carService)
+    public CarController(
+        ICarService carService,
+        IDropDownDataService dropDownDataService)
     {
         this.carService = carService;
+        this.dropDownDataService = dropDownDataService;
     }
 
     [HttpGet]
     public async Task<IActionResult> Create()
     {
-        var makes = await this.carService.GetAllMakesAsync();
-        var petrolTypes = await this.carService.GetAllPetrolTypesAsync();
-        var cities = await this.carService.GetAllCitiesAsync();
+        var makes = await this.dropDownDataService.GetAllMakesAsync();
+        var petrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
+        var cities = await this.dropDownDataService.GetAllCitiesAsync();
 
         var model = new CreateCarInputViewModel()
         {
@@ -32,9 +36,9 @@ public class CarController : BaseController
     {
         if (this.ModelState.IsValid == false)
         {
-            input.Makes = await this.carService.GetAllMakesAsync();
-            input.PetrolTypes = await this.carService.GetAllPetrolTypesAsync();
-            input.Cities = await this.carService.GetAllCitiesAsync();
+            input.Makes = await this.dropDownDataService.GetAllMakesAsync();
+            input.PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
+            input.Cities = await this.dropDownDataService.GetAllCitiesAsync();
             return this.View(input);
         }
 
