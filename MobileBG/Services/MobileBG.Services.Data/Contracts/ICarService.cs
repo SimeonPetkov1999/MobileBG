@@ -7,4 +7,8 @@ public interface ICarService
         string userId);
 
     public Task<SingleCarViewModel> SingleCarAsync(Guid carId);
+
+    public Task<ICollection<CarInfoViewModel>> AllCarsAsync(SearchCarViewModel input, int page, int itemsPerPage);
+
+    public Task<int> CarsCountAsync(SearchCarViewModel input);
 }

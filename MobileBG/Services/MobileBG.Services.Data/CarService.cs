@@ -22,6 +22,7 @@ public class CarService : ICarService
             ModelId = model.ModelId,
             CityId = model.CityId,
             YearMade = model.YearMade,
+            Km = model.Km,
             PetrolTypeId = model.PetrolTypeId,
             HorsePower = model.HorsePower,
             Price = model.Price,
@@ -60,5 +61,45 @@ public class CarService : ICarService
              .FirstOrDefaultAsync();
 
         return car;
+    }
+
+    public async Task<ICollection<CarInfoViewModel>> AllCarsAsync(SearchCarViewModel input, int page, int itemsPerPage)
+    {
+        var query = this.carRepo.AllAsNoTracking();
+
+        query = this.ApplyFilters(input, query);
+
+        var cars = await query
+                         .Include(x => x.Make)
+                         .Include(x => x.Model)
+                         .Skip((page - 1) * itemsPerPage)
+                         .Take(itemsPerPage)
+                         .To<CarInfoViewModel>()
+                         .ToListAsync();
+
+        return cars;
+    }
+
+    public async Task<int> CarsCountAsync(SearchCarViewModel input)
+    {
+        var query = this.carRepo.AllAsNoTracking();
+
+        query = this.ApplyFilters(input, query);
+        return await query.CountAsync();
+    }
+
+    private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)
+    {
+        if (input.MakeId != null)
+        {
+            query = query.Where(x => x.MakeId == input.MakeId);
+        }
+
+        if (input.ModelId != null)
+        {
+            query = query.Where(x => x.ModelId == input.ModelId);
+        }
+
+        return query;
     }
 }

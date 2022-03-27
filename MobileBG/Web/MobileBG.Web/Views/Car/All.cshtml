@@ -1,0 +1,162 @@
+﻿@using MobileBG.Web.ViewModels.Cars
+
+@model SearchCarViewModel
+
+<form method="get">
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="MakeId"></label>
+            <select id='makes' class="form-control" asp-for="MakeId">
+                <option>All</option>
+                @foreach (var make in Model.Makes)
+                {
+                    <option value="@make.Id">@make.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ModelId"></label>
+            <select id='models' asp-for="ModelId" class="form-control">
+                <option>All</option>
+            </select>
+        </div>
+    </div>
+    @*   <div class="row ">
+        <div class="col-md-4">
+        <label class="text-primary">Petrol Type</label>
+        <select asp-for="PetrolTypeId" asp-items="PetrolTypes" class="form-control">
+        <option>All</option>
+        </select>
+        </div>
+        <div class="col-md-4">
+        <label class="text-primary">Transmision Type</label>
+        <select asp-for="TransmisionTypeId" asp-items="TransmisionTypes" class="form-control">
+        <option>All</option>
+        </select>
+        </div>
+        <div class="col-md-4">
+        <label class="text-primary">City</label>
+        <select asp-for="CityId" asp-items="Cities" class="form-control">
+        <option>All</option>
+        </select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col md-2">
+        <label class="text-primary">Color</label>
+        <select asp-for="ColorId" asp-items="Colors" class="form-control">
+        <option>All</option>
+        </select>
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Year from</label>
+        <input type="number" min="1900" max="2021" name="yearFrom" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Year to</label>
+        <input type="number" min="1900" max="2021" name="yearTo" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Min price</label>
+        <input type="number" placeholder="Price in BGN" step="1000" min="0" name="priceMin" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Max price</label>
+        <input type="number" placeholder="Price in BGN" step="1000" min="0" name="priceMax" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Min horsepower</label>
+        <input type="number" placeholder="Min horsepower" step="5" min="0" name="horsePowerMin" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Max horsePower</label>
+        <input type="number" placeholder="Max horsepower" step="5" min="0" name="horsePowerMax" class="form-control" />
+        </div>
+        <div class="col-md-2">
+        <label class="text-primary">Order By</label>
+        <select name='orderById' class="form-control">
+        <option value="0" selected>DateAdded</option>
+        <option value="1">Price Ascending</option>
+        <option value="2">Price Descending</option>
+        <option value="3">Newest</option>
+        <option value="4">Oldest</option>
+        </select>
+        </div>
+        </div>*@
+    <br />
+    <div class="row">
+        <button class="form-control btn-sm btn-success col-md-3" asp-route-id="1" type="submit">Search</button>
+    </div>
+</form>
+<form id="carsForm"></form>
+@foreach (var car in @Model.Cars)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@car.MakeName @car.ModelName @car.Price</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <button form="carsForm" class="btn btn-primary" type="submit" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id"> View more</button>
+        </div>
+    </div>
+}
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.FirstPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>First</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.PreviousPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Previous</strong></a>
+        </li>
+        @for (int i = Model.PageNumber - 2; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
+            }
+
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 2; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
+            }
+
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.NextPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Next</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.LastPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Last</strong></a>
+        </li>
+    </ul>
+</nav>
+
+@section Scripts
+{
+<script>
+    var makesList = document.getElementById("makes");
+    function populateDropdownForModels() {
+        var index = makesList.selectedIndex;
+        if (index == 0) {
+            document.getElementById('models').innerHTML = "";
+            $('#models').append($('<option>All</option>'));
+        }
+        else{
+             document.getElementById('models').innerHTML = "";
+             $('#models').append($('<option>All</option>'));
+        }
+    }
+
+    $('#makes').change(populateDropdownForModels)
+    $(document).ready(populateDropdownForModels)
+</script>
+} 

@@ -55,4 +55,21 @@ public class CarController : BaseController
 
         return this.View(model);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> All(SearchCarViewModel input, int id = 1)
+    {
+        var itemsPerPage = 3;
+
+        var model = new SearchCarViewModel()
+        {
+            PageNumber = id,
+            Makes = await this.dropDownDataService.GetAllMakesAsync(),
+            Cars = await this.carService.AllCarsAsync(input, id, itemsPerPage),
+            ItemsCount = await this.carService.CarsCountAsync(input),
+            ItemsPerPage = itemsPerPage,
+        };
+
+        return this.View(model);
+    }
 }
