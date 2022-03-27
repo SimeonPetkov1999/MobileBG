@@ -1,0 +1,40 @@
+﻿@using MobileBG.Web.ViewModels.Cars
+@model SingleCarViewModel
+
+@section Head{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+}
+
+@(this.ViewData["Title"]=this.Model.Make + " " + this.Model.Model)
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-width="500" data-height="500">
+                @foreach (var link in this.Model.Images)
+                {
+                    <img src="@link" width="400">
+                }
+            </div>
+        </div>
+        <div class="col">
+            <ul class="list-unstyled">
+                <li>Price:  @this.Model.Price BGN</li>
+                <li>Make:   @this.Model.Make</li>
+                <li>Model:   @this.Model.Model</li>
+                <li>Horse power:  @this.Model.HorsePower</li>
+               @* <li>KM: @this.Model.Km  </li>*@
+                <li>Petrol type: @this.Model.PetrolType</li>
+                <li>Year made:   @this.Model.YearMade</li>
+                <li>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
+                <li>Description:  @this.Model.Description</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+}

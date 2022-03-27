@@ -21,6 +21,7 @@ public class CarService : ICarService
             MakeId = model.MakeId,
             ModelId = model.ModelId,
             CityId = model.CityId,
+            YearMade = model.YearMade,
             PetrolTypeId = model.PetrolTypeId,
             HorsePower = model.HorsePower,
             Price = model.Price,
@@ -44,5 +45,20 @@ public class CarService : ICarService
         await this.carRepo.SaveChangesAsync();
 
         return entity.Id;
+    }
+
+    public async Task<SingleCarViewModel> SingleCarAsync(Guid carId)
+    {
+        var car = await this.carRepo
+             .AllAsNoTracking()
+             .Include(x => x.Make)
+             .Include(x => x.Model)
+             .Include(x => x.PetrolType)
+             .Include(x => x.User)
+             .Where(x => x.Id == carId)
+             .To<SingleCarViewModel>()
+             .FirstOrDefaultAsync();
+
+        return car;
     }
 }

@@ -15,9 +15,9 @@ public class AllowedExtensionsAttribute : ValidationAttribute
     {
         var files = value as List<IFormFile>;
 
-        foreach (var file in files)
+        if (files != null)
         {
-            if (file != null)
+            foreach (var file in files)
             {
                 var extension = Path.GetExtension(file.FileName);
 

@@ -47,4 +47,12 @@ public class CarController : BaseController
 
         return this.Content("Added");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(Guid id)
+    {
+        var model = await this.carService.SingleCarAsync(id);
+
+        return this.View(model);
+    }
 }
