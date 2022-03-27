@@ -14,6 +14,8 @@ public class SingleCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 
     public int YearMade { get; set; }
 
+    public int Km { get; set; }
+
     public string Description { get; set; }
 
     public ICollection<string> Images { get; set; }

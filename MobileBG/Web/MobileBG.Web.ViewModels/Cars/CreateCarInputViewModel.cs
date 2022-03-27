@@ -23,6 +23,11 @@ public class CreateCarInputViewModel
     [Range(1950, 2022, ErrorMessage = "The Year must be between {1} and {2}!")]
     public int YearMade { get; set; }
 
+    [Required(ErrorMessage = "Km is required")]
+    [Display(Name = "Km")]
+    [Range(1, 1_000_000, ErrorMessage = "The Km must be between {1} and {2}!")]
+    public int Km { get; set; }
+
     [Required(ErrorMessage = "Horse Power is required")]
     [Display(Name = "Horse Power")]
     [Range(10, 1000, ErrorMessage = "The Horse Power must be between {1} and {2}!")]

@@ -22,6 +22,8 @@ public class CarEntity : BaseModel<Guid>
 
     public int YearMade { get; set; }
 
+    public int Km { get; set; }
+
     public int HorsePower { get; set; }
 
     public string Description { get; set; }
