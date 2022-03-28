@@ -66,17 +66,19 @@ public class CarController : BaseController
 
         var itemsPerPage = 5;
 
-        var model = new SearchCarViewModel()
+        var model = await this.carService.AllApprovedCarsAsync(input, id, itemsPerPage);
+
+        var viewModel = new SearchCarViewModel()
         {
             Makes = await this.dropDownDataService.GetAllMakesAsync(),
             Cities = await this.dropDownDataService.GetAllCitiesAsync(),
             PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync(),
-            Cars = await this.carService.AllApprovedCarsAsync(input, id, itemsPerPage),
-            ItemsCount = await this.carService.CarsCountAsync(input),
+            Cars = model.Cars,
+            ItemsCount = model.Count,
             ItemsPerPage = itemsPerPage,
             PageNumber = id,
         };
 
-        return this.View(model);
+        return this.View(viewModel);
     }
 }

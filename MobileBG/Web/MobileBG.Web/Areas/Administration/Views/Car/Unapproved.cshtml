@@ -1,7 +1,28 @@
 ﻿@using MobileBG.Web.ViewModels.Cars
 
 @model SearchCarViewModel
-<form id="carsForm"></form>
+<form id="approve" method="post"></form>
+
+@if (this.TempData.ContainsKey("Success"))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@this.TempData["Success"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (this.TempData.ContainsKey("Danger"))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@this.TempData["Danger"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <div class="container">
     <div class="row">
         @foreach (var car in @Model.Cars)
@@ -14,7 +35,7 @@
                 </div>
                 <div class="card-footer">
                     <button form="carsForm" class="btn btn-primary btn-sm m-1" type="submit" asp-area="" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">View</button>
-                    <button form="carsForm" class="btn btn-success btn-sm m-1" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Approve" asp-route-id="@car.Id">Approve</button>
+                    <button form="approve" class="btn btn-success btn-sm m-1"  onsubmit="if(confirm(\'are you sure ?\')){ this.form.submit() }" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Approve" asp-route-id="@car.Id">Approve</button>
                     <button form="carsForm" class="btn btn-danger btn-sm" type="submit" asp-area="" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">Delete</button>
                 </div>
             </div>
@@ -22,23 +43,48 @@
     </div>
 </div>
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) {
         <text>disabled</text>
         }">
-            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.FirstPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>First</strong></a>
+            <a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@Model.FirstPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>First</strong></a>
         </li>
         <li class="page-item @if (!Model.HasPreviousPage) {
         <text>disabled</text>
  }">
-            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.PreviousPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Previous</strong></a>
+            <a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@Model.PreviousPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Previous</strong></a>
         </li>
         @for (int i = Model.PageNumber - 2; i < Model.PageNumber; i++)
         {
             if (i > 0)
             {
-                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
             }
 
         }
@@ -52,19 +98,19 @@
         {
             if (i <= Model.PagesCount)
             {
-                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@i" onclick="location.href=this.href+window.location.search;return false;">@i</a></li>
             }
 
         }
         <li class="page-item @if (!Model.HasNextPage) {
         <text>disabled</text>
  }">
-            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.NextPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Next</strong></a>
+            <a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@Model.NextPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Next</strong></a>
         </li>
         <li class="page-item @if (!Model.HasNextPage) {
         <text>disabled</text>
  }">
-            <a class="page-link" asp-controller="Car" asp-action="All" asp-route-id="@Model.LastPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Last</strong></a>
+            <a class="page-link" asp-controller="Car" asp-action="Unapproved" asp-route-id="@Model.LastPageNumber" onclick="location.href=this.href+window.location.search;return false;"><strong>Last</strong></a>
         </li>
     </ul>
 </nav>

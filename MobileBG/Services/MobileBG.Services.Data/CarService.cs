@@ -65,11 +65,13 @@ public class CarService : ICarService
         return car;
     }
 
-    public async Task<ICollection<CarInfoViewModel>> AllApprovedCarsAsync(SearchCarViewModel input, int page, int itemsPerPage)
+    public async Task<CarDataViewModel> AllApprovedCarsAsync(SearchCarViewModel input, int page, int itemsPerPage)
     {
         var query = this.carRepo.AllAsNoTracking().Where(x => x.IsApproved == true);
 
         query = this.ApplyFilters(input, query);
+
+        var count = query.Count();
 
         var cars = await query
              .Include(x => x.Make)
@@ -79,30 +81,41 @@ public class CarService : ICarService
              .To<CarInfoViewModel>()
              .ToListAsync();
 
-        return cars;
+        return new CarDataViewModel() { Cars = cars, Count = count };
     }
 
-    public async Task<int> CarsCountAsync(SearchCarViewModel input)
+    public async Task<CarDataViewModel> AllUnapprovedCarsAsync(int page, int itemsPerPage)
     {
-        var query = this.carRepo.AllAsNoTracking();
-
-        query = this.ApplyFilters(input, query);
-        return await query.CountAsync();
-    }
-
-    public async Task<ICollection<CarInfoViewModel>> AllUnapprovedCarsAsync(int page, int itemsPerPage)
-    {
-        var cars = await this.carRepo
+        var query = this.carRepo
              .AllAsNoTracking()
-             .Where(x => x.IsApproved == false)
+             .Where(x => x.IsApproved == false);
+
+        var count = await query.CountAsync();
+
+        var cars = await query
              .Include(x => x.Make)
              .Include(x => x.Model)
+             .OrderBy(x => x.CreatedOn)
              .Skip((page - 1) * itemsPerPage)
              .Take(itemsPerPage)
              .To<CarInfoViewModel>()
              .ToListAsync();
 
-        return cars;
+        return new CarDataViewModel() { Cars = cars, Count = count };
+    }
+
+    public async Task ApproveCarAsync(Guid carId)
+    {
+        var car = this.carRepo
+            .AllAsNoTracking()
+            .FirstOrDefault(x => x.Id == carId);
+
+        if (car != null)
+        {
+            car.IsApproved = true;
+            this.carRepo.Update(car);
+            await this.carRepo.SaveChangesAsync();
+        }
     }
 
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)

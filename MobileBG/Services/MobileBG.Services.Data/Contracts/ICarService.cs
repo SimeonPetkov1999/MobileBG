@@ -8,9 +8,9 @@ public interface ICarService
 
     public Task<SingleCarViewModel> SingleCarAsync(Guid carId);
 
-    public Task<ICollection<CarInfoViewModel>> AllApprovedCarsAsync(SearchCarViewModel input, int page, int itemsPerPage);
+    public Task<CarDataViewModel> AllApprovedCarsAsync(SearchCarViewModel input, int page, int itemsPerPage);
 
-    public Task<ICollection<CarInfoViewModel>> AllUnapprovedCarsAsync(int page, int itemsPerPage);
+    public Task<CarDataViewModel> AllUnapprovedCarsAsync(int page, int itemsPerPage);
 
-    public Task<int> CarsCountAsync(SearchCarViewModel input);
+    public Task ApproveCarAsync(Guid carId);
 }

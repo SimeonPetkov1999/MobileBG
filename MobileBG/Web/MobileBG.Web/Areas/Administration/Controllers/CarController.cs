@@ -17,15 +17,25 @@ public class CarController : AdministrationController
 
         var itemsPerPage = 2;
 
-        var cars = await this.carService.AllUnapprovedCarsAsync(id, itemsPerPage);
-        var model = new SearchCarViewModel()
+        var model = await this.carService.AllUnapprovedCarsAsync(id, itemsPerPage);
+
+        var viewModel = new SearchCarViewModel()
         {
             ItemsPerPage = itemsPerPage,
             PageNumber = id,
-            ItemsCount = cars.Count,
-            Cars = cars,
+            ItemsCount = model.Count,
+            Cars = model.Cars,
         };
 
-        return this.View(model);
+        return this.View(viewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Approve(Guid Id)
+    {
+        await this.carService.ApproveCarAsync(Id);
+        this.TempData["Success"] = "You succesfully approved the car!";
+        return this.RedirectToAction(nameof(this.Unapproved), 1);
     }
 }
