@@ -1,6 +1,6 @@
-﻿using MobileBG.Web.ViewModels;
+﻿namespace MobileBG.Services.Data;
 
-namespace MobileBG.Services.Data;
+using MobileBG.Web.ViewModels;
 
 public class CarService : ICarService
 {
@@ -65,9 +65,9 @@ public class CarService : ICarService
         return car;
     }
 
-    public async Task<ICollection<CarInfoViewModel>> AllCarsAsync(SearchCarViewModel input, int page, int itemsPerPage)
+    public async Task<ICollection<CarInfoViewModel>> AllApprovedCarsAsync(SearchCarViewModel input, int page, int itemsPerPage)
     {
-        var query = this.carRepo.AllAsNoTracking();
+        var query = this.carRepo.AllAsNoTracking().Where(x => x.IsApproved == true);
 
         query = this.ApplyFilters(input, query);
 
@@ -88,6 +88,21 @@ public class CarService : ICarService
 
         query = this.ApplyFilters(input, query);
         return await query.CountAsync();
+    }
+
+    public async Task<ICollection<CarInfoViewModel>> AllUnapprovedCarsAsync(int page, int itemsPerPage)
+    {
+        var cars = await this.carRepo
+             .AllAsNoTracking()
+             .Where(x => x.IsApproved == false)
+             .Include(x => x.Make)
+             .Include(x => x.Model)
+             .Skip((page - 1) * itemsPerPage)
+             .Take(itemsPerPage)
+             .To<CarInfoViewModel>()
+             .ToListAsync();
+
+        return cars;
     }
 
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)

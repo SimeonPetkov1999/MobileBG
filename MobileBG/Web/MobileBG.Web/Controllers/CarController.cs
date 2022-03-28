@@ -71,7 +71,7 @@ public class CarController : BaseController
             Makes = await this.dropDownDataService.GetAllMakesAsync(),
             Cities = await this.dropDownDataService.GetAllCitiesAsync(),
             PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync(),
-            Cars = await this.carService.AllCarsAsync(input, id, itemsPerPage),
+            Cars = await this.carService.AllApprovedCarsAsync(input, id, itemsPerPage),
             ItemsCount = await this.carService.CarsCountAsync(input),
             ItemsPerPage = itemsPerPage,
             PageNumber = id,

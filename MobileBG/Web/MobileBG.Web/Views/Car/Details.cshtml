@@ -1,8 +1,9 @@
-﻿@using MobileBG.Web.ViewModels.Cars
+﻿@using MobileBG.Common
+@using MobileBG.Web.ViewModels.Cars
 @model SingleCarViewModel
 
 @section Head{
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 }
 
 @(this.ViewData["Title"]=this.Model.Make + " " + this.Model.Model)
@@ -37,5 +38,5 @@
 
 @section Scripts
 {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 }
