@@ -18,6 +18,8 @@ public class SingleCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 
     public string Description { get; set; }
 
+    public string CityName { get; set; }
+
     public ICollection<string> Images { get; set; }
 
     public string UserId { get; set; }

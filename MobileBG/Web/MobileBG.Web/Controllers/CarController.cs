@@ -59,15 +59,22 @@ public class CarController : BaseController
     [HttpGet]
     public async Task<IActionResult> All(SearchCarViewModel input, int id = 1)
     {
-        var itemsPerPage = 3;
+        if (id < 1)
+        {
+            return this.NotFound();
+        }
+
+        var itemsPerPage = 5;
 
         var model = new SearchCarViewModel()
         {
-            PageNumber = id,
             Makes = await this.dropDownDataService.GetAllMakesAsync(),
+            Cities = await this.dropDownDataService.GetAllCitiesAsync(),
+            PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync(),
             Cars = await this.carService.AllCarsAsync(input, id, itemsPerPage),
             ItemsCount = await this.carService.CarsCountAsync(input),
             ItemsPerPage = itemsPerPage,
+            PageNumber = id,
         };
 
         return this.View(model);

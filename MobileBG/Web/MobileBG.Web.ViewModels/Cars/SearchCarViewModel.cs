@@ -9,25 +9,28 @@ public class SearchCarViewModel : PagingViewModel
     public Guid? ModelId { get; set; }
 
     [Display(Name = "Petrol Type")]
-    public Guid PetrolTypeId { get; set; }
+    public Guid? PetrolTypeId { get; set; }
 
     [Display(Name = "City")]
-    public Guid CityId { get; set; }
+    public Guid? CityId { get; set; }
 
     [Display(Name = "Year from")]
-    public int YearFrom { get; set; }
+    public int? YearFrom { get; set; }
 
     [Display(Name = "Year to")]
-    public int YearTo { get; set; }
+    public int? YearTo { get; set; }
 
     [Display(Name = "Min Horse Power")]
-    public int MinHorsePower { get; set; }
+    public int? MinHorsePower { get; set; }
 
     [Display(Name = "Min price")]
-    public decimal MinPrice { get; set; }
+    public decimal? MinPrice { get; set; }
 
     [Display(Name = "Max price")]
-    public decimal MaxPrice { get; set; }
+    public decimal? MaxPrice { get; set; }
+
+    [Display(Name = "Order by")]
+    public OrderBy? Order { get; set; }
 
     // Data for dropdown
     public ICollection<DropdownDataViewModel> Makes { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace MobileBG.Services.Data;
+﻿using MobileBG.Web.ViewModels;
+
+namespace MobileBG.Services.Data;
 
 public class CarService : ICarService
 {
@@ -70,12 +72,12 @@ public class CarService : ICarService
         query = this.ApplyFilters(input, query);
 
         var cars = await query
-                         .Include(x => x.Make)
-                         .Include(x => x.Model)
-                         .Skip((page - 1) * itemsPerPage)
-                         .Take(itemsPerPage)
-                         .To<CarInfoViewModel>()
-                         .ToListAsync();
+             .Include(x => x.Make)
+             .Include(x => x.Model)
+             .Skip((page - 1) * itemsPerPage)
+             .Take(itemsPerPage)
+             .To<CarInfoViewModel>()
+             .ToListAsync();
 
         return cars;
     }
@@ -100,6 +102,50 @@ public class CarService : ICarService
             query = query.Where(x => x.ModelId == input.ModelId);
         }
 
+        if (input.CityId != null)
+        {
+            query = query.Where(x => x.CityId == input.CityId);
+        }
+
+        if (input.PetrolTypeId != null)
+        {
+            query = query.Where(x => x.PetrolTypeId == input.PetrolTypeId);
+        }
+
+        if (input.YearFrom != null)
+        {
+            query = query.Where(x => x.YearMade >= input.YearFrom);
+        }
+
+        if (input.YearTo != null)
+        {
+            query = query.Where(x => x.YearMade <= input.YearTo);
+        }
+
+        if (input.MaxPrice != null)
+        {
+            query = query.Where(x => x.Price <= input.MaxPrice);
+        }
+
+        if (input.MinPrice != null)
+        {
+            query = query.Where(x => x.Price >= input.MinPrice);
+        }
+
+        if (input.MinHorsePower != null)
+        {
+            query = query.Where(x => x.HorsePower >= input.MinHorsePower);
+        }
+
+        query = input.Order switch
+        {
+            OrderBy.DateAdded => query.OrderBy(x => x.CreatedOn),
+            OrderBy.PriceAsc => query.OrderBy(x => x.Price),
+            OrderBy.PriceDesc => query.OrderByDescending(x => x.Price),
+            OrderBy.Newest => query.OrderByDescending(x => x.YearMade),
+            OrderBy.Oldest => query.OrderBy(x => x.YearMade),
+            _ => query.OrderBy(x => x.CreatedOn),
+        };
         return query;
     }
 }

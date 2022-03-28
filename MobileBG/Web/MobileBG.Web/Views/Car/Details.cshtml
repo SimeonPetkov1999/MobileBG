@@ -26,6 +26,7 @@
                 <li>Petrol type: @this.Model.PetrolType</li>
                 <li>Year made:   @this.Model.YearMade</li>
                 <li>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
+                <li>City:  @this.Model.CityName</li>
                 <li>Description:  @this.Model.Description</li>
             </ul>
         </div>
