@@ -13,4 +13,6 @@ public interface ICarService
     public Task<CarDataViewModel> AllUnapprovedCarsAsync(int page, int itemsPerPage);
 
     public Task ApproveCarAsync(Guid carId);
+
+    public Task DeleteCarAsync(Guid carId);
 }

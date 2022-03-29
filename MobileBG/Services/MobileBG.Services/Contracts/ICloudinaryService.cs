@@ -4,7 +4,7 @@ public interface ICloudinaryService
 {
     public Task<string> UploadAsync(IFormFile file, Guid carId);
 
-    public string Delete(string url);
+    public Task<string> DeleteAsync(string url);
 
-    public string DeleteAll(Guid carId);
+    public Task<string> DeleteAllAsync(Guid carId);
 }

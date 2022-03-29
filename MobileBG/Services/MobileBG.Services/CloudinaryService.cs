@@ -29,18 +29,18 @@ public class CloudinaryService : ICloudinaryService
         return res.Url.ToString();
     }
 
-    public string Delete(string url)
+    public async Task<string> DeleteAsync(string url)
     {
         var id = url.Split('/').Last().Split('.').First();
         var publicId = $"MobileBG/{id}";
-        var res = this.cloudinary.DeleteResources(publicId);
+        var res = await this.cloudinary.DeleteResourcesAsync(publicId);
 
         return res.ToString();
     }
 
-    public string DeleteAll(Guid carId)
+    public async Task<string> DeleteAllAsync(Guid carId)
     {
-        var res = this.cloudinary.DeleteResourcesByTag(carId.ToString());
+        var res = await this.cloudinary.DeleteResourcesByTagAsync(carId.ToString());
         return res.ToString();
     }
 }

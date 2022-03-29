@@ -35,7 +35,16 @@ public class CarController : AdministrationController
     public async Task<IActionResult> Approve(Guid Id)
     {
         await this.carService.ApproveCarAsync(Id);
-        this.TempData["Success"] = "You succesfully approved the car!";
+        this.TempData["Success"] = "Car is approved!";
+        return this.RedirectToAction(nameof(this.Unapproved), 1);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(Guid Id)
+    {
+        await this.carService.DeleteCarAsync(Id);
+        this.TempData["Danger"] = "Car is deleted";
         return this.RedirectToAction(nameof(this.Unapproved), 1);
     }
 }

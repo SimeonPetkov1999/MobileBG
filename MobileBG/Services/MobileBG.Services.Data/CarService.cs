@@ -5,13 +5,16 @@ using MobileBG.Web.ViewModels;
 public class CarService : ICarService
 {
     private readonly IRepository<CarEntity> carRepo;
+    private readonly IRepository<ImageEntity> imageRepo;
     private readonly ICloudinaryService cloudinaryService;
 
     public CarService(
         IRepository<CarEntity> carRepo,
+        IRepository<ImageEntity> imageRepo,
         ICloudinaryService cloudinaryService)
     {
         this.carRepo = carRepo;
+        this.imageRepo = imageRepo;
         this.cloudinaryService = cloudinaryService;
     }
 
@@ -114,6 +117,28 @@ public class CarService : ICarService
         {
             car.IsApproved = true;
             this.carRepo.Update(car);
+            await this.carRepo.SaveChangesAsync();
+        }
+    }
+
+    public async Task DeleteCarAsync(Guid carId)
+    {
+        var car = this.carRepo
+            .AllAsNoTracking()
+            .Include(x => x.Images)
+            .FirstOrDefault(x => x.Id == carId);
+
+        if (car != null)
+        {
+            foreach (var image in car.Images)
+            {
+                this.imageRepo.Delete(image);
+            }
+
+            await this.imageRepo.SaveChangesAsync();
+            await this.cloudinaryService.DeleteAllAsync(car.Id);
+
+            this.carRepo.Delete(car);
             await this.carRepo.SaveChangesAsync();
         }
     }
