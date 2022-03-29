@@ -75,7 +75,6 @@ public class CarService : ICarService
         query = this.ApplyFilters(input, query);
 
         var count = query.Count();
-
         var cars = await query
              .Include(x => x.Make)
              .Include(x => x.Model)
@@ -95,14 +94,7 @@ public class CarService : ICarService
 
         var count = await query.CountAsync();
 
-        var cars = await query
-             .Include(x => x.Make)
-             .Include(x => x.Model)
-             .OrderBy(x => x.CreatedOn)
-             .Skip((page - 1) * itemsPerPage)
-             .Take(itemsPerPage)
-             .To<CarInfoViewModel>()
-             .ToListAsync();
+        var cars = await this.GetCarData(page, itemsPerPage, query);
 
         return new CarDataViewModel() { Cars = cars, Count = count };
     }
@@ -141,6 +133,30 @@ public class CarService : ICarService
             this.carRepo.Delete(car);
             await this.carRepo.SaveChangesAsync();
         }
+    }
+
+    public async Task<CarDataViewModel> AllCarsForUserAsync(string userId, int page, int itemsPerPage)
+    {
+        var query = this.carRepo
+             .AllAsNoTracking()
+             .Where(x => x.UserId == userId);
+
+        var count = query.Count();
+
+        var cars = await this.GetCarData(page, itemsPerPage, query);
+
+        var model = new CarDataViewModel() { Cars = cars, Count = count };
+
+        return model;
+    }
+
+    public async Task<bool> ValidateUserOwnsCarAsync(string userId, Guid carId)
+    {
+        var car = await this.carRepo
+            .AllAsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == carId);
+
+        return car.UserId == userId;
     }
 
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)
@@ -201,4 +217,14 @@ public class CarService : ICarService
         };
         return query;
     }
+
+    private async Task<List<CarInfoViewModel>> GetCarData(int page, int itemsPerPage, IQueryable<CarEntity> query)
+        => await query
+             .Include(x => x.Make)
+             .Include(x => x.Model)
+             .OrderBy(x => x.CreatedOn)
+             .Skip((page - 1) * itemsPerPage)
+             .Take(itemsPerPage)
+             .To<CarInfoViewModel>()
+             .ToListAsync();
 }

@@ -15,7 +15,7 @@ public class CarController : AdministrationController
             return this.NotFound();
         }
 
-        var itemsPerPage = 2;
+        var itemsPerPage = 5;
 
         var model = await this.carService.AllUnapprovedCarsAsync(id, itemsPerPage);
 

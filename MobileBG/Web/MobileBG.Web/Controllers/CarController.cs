@@ -14,6 +14,7 @@ public class CarController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Create()
     {
         var makes = await this.dropDownDataService.GetAllMakesAsync();
@@ -49,11 +50,47 @@ public class CarController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Details(Guid id)
     {
         var model = await this.carService.SingleCarAsync(id);
 
         return this.View(model);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> Mine(int id = 1)
+    {
+        var userId = this.User.GetId();
+        var itemsPerPage = 5;
+
+        var model = await this.carService.AllCarsForUserAsync(userId, id, itemsPerPage);
+
+        var viewModel = new SearchCarViewModel()
+        {
+            ItemsPerPage = itemsPerPage,
+            PageNumber = id,
+            ItemsCount = model.Count,
+            Cars = model.Cars,
+        };
+
+        return this.View(viewModel);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Delete(Guid Id)
+    {
+        var userId = this.User.GetId();
+        var isValid = await this.carService.ValidateUserOwnsCarAsync(userId, Id);
+
+        if (isValid)
+        {
+            await this.carService.DeleteCarAsync(Id);
+        }
+
+        return this.RedirectToAction(nameof(this.Mine), 1);
     }
 
     [HttpGet]
