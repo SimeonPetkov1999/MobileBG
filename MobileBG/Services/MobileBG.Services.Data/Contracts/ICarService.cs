@@ -19,4 +19,8 @@ public interface ICarService
     public Task<CarDataViewModel> AllCarsForUserAsync(string userId, int page, int itemsPerPage);
 
     public Task<bool> ValidateUserOwnsCarAsync(string userId, Guid carId);
+
+    public Task<EditCarViewModel> GetCarDataAsync(Guid carId);
+
+    public Task UpdateCarDataAsync(EditCarViewModel input);
 }

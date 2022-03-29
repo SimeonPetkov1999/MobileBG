@@ -1,0 +1,126 @@
+﻿@using MobileBG.Web.ViewModels.Cars
+
+@model EditCarViewModel
+
+@section Head{
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+}
+
+<div class="container">
+    <div class="row">
+        <div class="offset-lg-2 col-lg-8 col-sm-12 offset-xl-3 col-xl-6">
+
+            <div asp-validation-summary="All"></div>
+            <div class="fotorama" data-allowfullscreen="native" data-click="false" data-nav="thumbs" data-width="500" data-height="300">
+                @foreach (var link in this.Model.ImageUrls)
+                {
+                    <div data-img="@link" width="400"> <button type="button" class="btn btn-sm btn-danger" onclick="post('@link')">Delete</button> </div>
+                }
+            </div>
+            <form method="post" enctype="multipart/form-data">              
+                <div class="form-group">
+                    <label asp-for="MakeId"></label>
+                    <select id="makes" asp-for="MakeId" class="form-control">
+                        @foreach (var make in Model.Makes)
+                        {
+                            <option value="@make.Id">@make.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MakeId" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ModelId"></label>
+                    <select class="form-control" id='models' asp-for="ModelId">
+                    </select>
+                    <span asp-validation-for="ModelId" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PetrolTypeId"></label>
+                    <select asp-for="PetrolTypeId" class="form-control">
+                        @foreach (var type in Model.PetrolTypes)
+                        {
+                            <option value="@type.Id">@type.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="PetrolTypeId" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CityId"></label>
+                    <select asp-for="CityId" class="form-control">
+                        @foreach (var city in Model.Cities)
+                        {
+                            <option value="@city.Id">@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CityId" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="YearMade"></label>
+                    <input asp-for="YearMade" class="form-control" />
+                    <span asp-validation-for="YearMade" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Km"></label>
+                    <input asp-for="Km" class="form-control" />
+                    <span asp-validation-for="Km" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input asp-for="HorsePower" class="form-control" />
+                    <span asp-validation-for="HorsePower" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="small text-danger"></span>
+                </div>
+
+                  <div class="form-group">
+                    <label> Choose maximum 5 images (.jpg, .png). Max file size is 3mb!</label>
+                    <input type="file" name="Images" accept=".png,.jpg" multiple class="form-control" />
+                    </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+<script>
+
+    function post(link){
+        const data = {url:link};
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/Image/Delete',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+            data: data,
+            success: function () {
+                document.location.reload()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+
+
+</script>
+} 

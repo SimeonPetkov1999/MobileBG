@@ -1,4 +1,5 @@
 ﻿namespace MobileBG.Web.Controllers;
+using MobileBG.Common;
 
 public class CarController : BaseController
 {
@@ -46,7 +47,9 @@ public class CarController : BaseController
         var userId = this.User.GetId();
         await this.carService.CreateCarAsync(input, userId);
 
-        return this.Content("Added");
+        this.TempData["Success"] = "You successfuly created a car. Wait for approval";
+
+        return this.RedirectToAction(nameof(this.Mine), 1);
     }
 
     [HttpGet]
@@ -63,13 +66,12 @@ public class CarController : BaseController
     public async Task<IActionResult> Mine(int id = 1)
     {
         var userId = this.User.GetId();
-        var itemsPerPage = 5;
 
-        var model = await this.carService.AllCarsForUserAsync(userId, id, itemsPerPage);
+        var model = await this.carService.AllCarsForUserAsync(userId, id, GlobalConstants.ItemsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
-            ItemsPerPage = itemsPerPage,
+            ItemsPerPage = GlobalConstants.ItemsPerPage,
             PageNumber = id,
             ItemsCount = model.Count,
             Cars = model.Cars,
@@ -88,6 +90,7 @@ public class CarController : BaseController
         if (isValid)
         {
             await this.carService.DeleteCarAsync(Id);
+            this.TempData["Success"] = "You succesfully deleted the car!";
         }
 
         return this.RedirectToAction(nameof(this.Mine), 1);
@@ -101,9 +104,7 @@ public class CarController : BaseController
             return this.NotFound();
         }
 
-        var itemsPerPage = 5;
-
-        var model = await this.carService.AllApprovedCarsAsync(input, id, itemsPerPage);
+        var model = await this.carService.AllApprovedCarsAsync(input, id, GlobalConstants.ItemsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
@@ -112,10 +113,41 @@ public class CarController : BaseController
             PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync(),
             Cars = model.Cars,
             ItemsCount = model.Count,
-            ItemsPerPage = itemsPerPage,
+            ItemsPerPage = GlobalConstants.ItemsPerPage,
             PageNumber = id,
         };
 
         return this.View(viewModel);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid Id)
+    {
+        var model = await this.carService.GetCarDataAsync(Id);
+
+        model.Cities = await this.dropDownDataService.GetAllCitiesAsync();
+        model.Makes = await this.dropDownDataService.GetAllMakesAsync();
+        model.PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
+
+        return this.View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditCarViewModel input)
+    {
+        if (this.ModelState.IsValid)
+        {
+            await this.carService.UpdateCarDataAsync(input);
+            this.TempData["Success"] = "You succesfully updated the car! Wait for approval.";
+            return this.RedirectToAction(nameof(this.Mine), 1);
+        }
+
+        var model = await this.carService.GetCarDataAsync(input.Id);
+
+        model.Cities = await this.dropDownDataService.GetAllCitiesAsync();
+        model.Makes = await this.dropDownDataService.GetAllMakesAsync();
+        model.PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
+
+        return this.View(model);
     }
 }

@@ -159,6 +159,58 @@ public class CarService : ICarService
         return car.UserId == userId;
     }
 
+    public async Task<EditCarViewModel> GetCarDataAsync(Guid carId)
+    {
+        var car = await this.carRepo
+            .AllAsNoTracking()
+            .Include(x => x.City)
+            .Include(x => x.Make)
+            .Include(x => x.Model)
+            .Include(x => x.PetrolType)
+            .Include(x => x.Images)
+            .Where(x => x.Id == carId)
+            .To<EditCarViewModel>()
+            .FirstOrDefaultAsync();
+
+        return car;
+    }
+
+    public async Task UpdateCarDataAsync(EditCarViewModel input)
+    {
+        var car = this.carRepo
+            .All()
+            .FirstOrDefault(x => x.Id == input.Id);
+
+        car.MakeId = input.MakeId;
+        car.ModelId = input.ModelId;
+        car.CityId = input.CityId;
+        car.PetrolTypeId = input.PetrolTypeId;
+        car.YearMade = input.YearMade;
+        car.Price = input.Price;
+        car.Description = input.Description;
+        car.HorsePower = input.HorsePower;
+        car.Km = input.Km;
+
+        if (input.ImageUrls != null)
+        {
+            var links = new List<string>();
+            foreach (var imageFile in input.Images)
+            {
+                var link = await this.cloudinaryService.UploadAsync(imageFile, car.Id);
+                links.Add(link);
+            }
+
+            foreach (var link in links)
+            {
+                car.Images.Add(new ImageEntity() { ImageUrl = link });
+            }
+        }
+
+        car.IsApproved = false;
+        this.carRepo.Update(car);
+        await this.carRepo.SaveChangesAsync();
+    }
+
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)
     {
         if (input.MakeId != null)

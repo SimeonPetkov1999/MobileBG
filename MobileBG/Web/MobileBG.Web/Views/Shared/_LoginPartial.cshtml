@@ -1,8 +1,6 @@
 ﻿@using MobileBG.Common
 @using MobileBG.Data.Models
-@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
     @if (this.SignInManager.IsSignedIn(this.User))

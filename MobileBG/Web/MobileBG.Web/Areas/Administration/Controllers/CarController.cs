@@ -1,4 +1,7 @@
 ﻿namespace MobileBG.Web.Areas.Administration.Controllers;
+
+using MobileBG.Common;
+
 public class CarController : AdministrationController
 {
     private readonly ICarService carService;
@@ -15,13 +18,11 @@ public class CarController : AdministrationController
             return this.NotFound();
         }
 
-        var itemsPerPage = 5;
-
-        var model = await this.carService.AllUnapprovedCarsAsync(id, itemsPerPage);
+        var model = await this.carService.AllUnapprovedCarsAsync(id, GlobalConstants.ItemsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
-            ItemsPerPage = itemsPerPage,
+            ItemsPerPage = GlobalConstants.ItemsPerPage,
             PageNumber = id,
             ItemsCount = model.Count,
             Cars = model.Cars,

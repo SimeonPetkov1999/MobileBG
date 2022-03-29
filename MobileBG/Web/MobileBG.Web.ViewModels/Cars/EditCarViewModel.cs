@@ -1,7 +1,8 @@
 ﻿namespace MobileBG.Web.ViewModels.Cars;
-
-public class CreateCarInputViewModel
+public class EditCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 {
+    public Guid Id { get; set; }
+
     [Required(ErrorMessage = "Car brand is required")]
     [Display(Name = "Car brand")]
     public Guid MakeId { get; set; }
@@ -41,11 +42,11 @@ public class CreateCarInputViewModel
     [StringLength(500, ErrorMessage = "Description should be no longer than 500 characters")]
     public string Description { get; set; }
 
+    public ICollection<string> ImageUrls { get; set; }
+
     [Display(Name = "Choose maximum 5 images (.jpg, .png)")]
-    [MaxLength(5, ErrorMessage = "Maximum 5 images!")]
     [AllowedExtensions(".jpg", ".png")]
     [MaxFileSize(3 * 1000 * 1000)] // 3mb
-    [Required(ErrorMessage = "You need to upload atleast one picture!")]
     public ICollection<IFormFile> Images { get; set; }
 
     public ICollection<DropdownDataViewModel> Makes { get; set; }
@@ -53,4 +54,11 @@ public class CreateCarInputViewModel
     public ICollection<DropdownDataViewModel> PetrolTypes { get; set; }
 
     public ICollection<DropdownDataViewModel> Cities { get; set; }
+
+    public void CreateMappings(IProfileExpression configuration)
+    {
+        configuration.CreateMap<CarEntity, EditCarViewModel>()
+              .ForMember(m => m.ImageUrls,  opt => opt.MapFrom(x => x.Images.Select(x => x.ImageUrl)))
+              .ForMember(m => m.Images,  opt => opt.Ignore());
+    }
 }

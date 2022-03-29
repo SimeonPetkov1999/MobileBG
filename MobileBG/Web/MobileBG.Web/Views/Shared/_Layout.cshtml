@@ -1,4 +1,9 @@
-﻿@using MobileBG.Common
+﻿@using MobileBG.Web
+@using MobileBG.Web.ViewModels
+@using Microsoft.AspNetCore.Identity
+@using MobileBG.Common
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +28,17 @@
 
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Create">Create car</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">All cars</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Mine">My cars</a>
-                        </li>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Create">Create car</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Mine">My cars</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
