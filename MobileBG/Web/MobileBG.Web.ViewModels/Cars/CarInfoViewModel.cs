@@ -12,6 +12,8 @@ public class CarInfoViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 
     public string ImageUrl { get; set; }
 
+    public int HorsePower { get; set; }
+
     public void CreateMappings(IProfileExpression configuration)
     {
         configuration.CreateMap<CarEntity, CarInfoViewModel>()

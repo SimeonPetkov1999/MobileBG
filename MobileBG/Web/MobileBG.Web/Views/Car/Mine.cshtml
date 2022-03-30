@@ -12,14 +12,16 @@
         @foreach (var car in @Model.Cars)
         {
               <div class="card p-1 m-2" style="width:16rem;">
-                <img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@car.MakeName @car.ModelName @car.Price</h5>
-                    <p class="card-text">Some .</p>
-                </div>
+                <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
+              <div class="card-body">
+                    <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
+                      <hr>
+                    <p class="card-text">Horse Power: @(car.HorsePower) </p>                   
+                    <p class="card-text">Price: @((int)car.Price) BGN</p>                   
+                </div>      
                 <div class="card-footer">
                     <button form="carsForm" class="btn btn-primary btn-sm" type="submit" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">View More</button>
-                    <button form="edit" class="btn btn-warning btn-sm ml-2 mr-1" type="submit"  asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id">Edit</button>
+                    <button form="edit" class="btn btn-warning btn-sm ml-1 mr-1" type="submit"  asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id">Edit</button>
                     <button form="delete" class="btn btn-danger btn-sm" type="submit"  asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id">Delete</button>
                 </div>
             </div>
