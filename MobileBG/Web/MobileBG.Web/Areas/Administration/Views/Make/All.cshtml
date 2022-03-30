@@ -1,0 +1,19 @@
+﻿@using MobileBG.Web.ViewModels.Makes
+
+@model AllMakesViewModel
+
+<form class="row g-3">
+  <div class="col-auto">
+    <input asp-for=KeyWord class="form-control" placeholder="Search">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Search</button>
+  </div>
+</form>
+
+<div class="row mt-4">
+    @foreach (var item in this.Model.Makes)
+    {
+        <a style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-2 float-left">@item.Name</a>
+    }
+</div>

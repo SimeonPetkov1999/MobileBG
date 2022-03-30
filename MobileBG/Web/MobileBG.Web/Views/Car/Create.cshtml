@@ -11,6 +11,7 @@
                 <div class="form-group">
                     <label asp-for="MakeId"></label>
                     <select id="makes" asp-for="MakeId" class="form-control">
+                        <option></option>
                         @foreach (var make in Model.Makes)
                         {
                             <option value="@make.Id">@make.Name</option>
