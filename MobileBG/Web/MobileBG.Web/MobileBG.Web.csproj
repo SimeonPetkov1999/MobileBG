@@ -40,4 +40,10 @@
     <ProjectReference Include="..\MobileBG.Web.Infrastructure\MobileBG.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\MobileBG.Web.ViewModels\MobileBG.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

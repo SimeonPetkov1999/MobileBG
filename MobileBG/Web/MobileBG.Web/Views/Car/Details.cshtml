@@ -4,13 +4,43 @@
 
 @section Head{
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+
+<style>
+    .profile {
+        -webkit-box-shadow: 17px 11px 18px -3px rgba(0,0,0,0.51);
+        box-shadow: 17px 11px 18px -3px rgba(0,0,0,0.51);
+    }
+
+    .card {
+        /*        width: 320px;*/
+        border: none;
+        border-radius: 10px;
+        background-color: #f2f2f2
+    }
+
+    .stats {
+        background: #fff !important;
+        color: #000 !important;
+        text-align: center;
+    }
+
+    .articles {
+        font-size: 10px;
+        color: #a1aab9
+    }
+
+    .number1 {
+        font-weight: 500
+    }
+
+</style>
 }
 
 @(this.ViewData["Title"]=this.Model.Make + " " + this.Model.Model)
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-width="500" >
+            <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-width="500">
                 @foreach (var link in this.Model.Images)
                 {
                     <img src="@link" width="400">
@@ -31,9 +61,23 @@
                 <li>Description:  @this.Model.Description</li>
             </ul>
         </div>
+        <hr />
+        <div class="container mt-5 mb-2 d-flex">
+            <div class="card p-3 profile">
+                <div class="d-flex align-items-center">
+                    <div class="image"> <img src="~/user.png" class="rounded" width="135"> </div>
+                    <div class="ml-3">
+                        <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4><span>+359887188511</span>
+                        <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
+                            <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">38</span> </div>
+                        </div>
+                        <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-primary">View cars</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 
 
 @section Scripts
