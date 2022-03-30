@@ -49,6 +49,7 @@ public class Startup
         services.AddTransient<IDropDownDataService, DropDownDataService>();
         services.AddTransient<ICloudinaryService, CloudinaryService>();
         services.AddTransient<IImageService, ImageService>();
+        services.AddTransient<IStatsService, StatsService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

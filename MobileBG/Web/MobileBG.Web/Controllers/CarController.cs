@@ -5,13 +5,16 @@ public class CarController : BaseController
 {
     private readonly ICarService carService;
     private readonly IDropDownDataService dropDownDataService;
+    private readonly IStatsService statsService;
 
     public CarController(
         ICarService carService,
-        IDropDownDataService dropDownDataService)
+        IDropDownDataService dropDownDataService,
+        IStatsService statsService)
     {
         this.carService = carService;
         this.dropDownDataService = dropDownDataService;
+        this.statsService = statsService;
     }
 
     [HttpGet]
@@ -63,6 +66,8 @@ public class CarController : BaseController
         }
 
         var model = await this.carService.SingleCarAsync(id);
+        model.UsersCars = await this.statsService.GetCountOfCarsForUserAsync(model.UserId);
+
         return this.View(model);
     }
 

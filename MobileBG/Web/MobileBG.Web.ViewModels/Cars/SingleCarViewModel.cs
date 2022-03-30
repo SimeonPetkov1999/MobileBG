@@ -26,6 +26,8 @@ public class SingleCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 
     public string UserName { get; set; }
 
+    public int UsersCars { get; set; }
+
     public void CreateMappings(IProfileExpression configuration)
     {
         configuration.CreateMap<CarEntity, SingleCarViewModel>()

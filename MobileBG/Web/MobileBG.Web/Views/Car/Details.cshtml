@@ -37,6 +37,7 @@
 }
 
 @(this.ViewData["Title"]=this.Model.Make + " " + this.Model.Model)
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -70,7 +71,7 @@
                     <div class="ml-3">
                         <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4><span>+359887188511</span>
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
-                            <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">38</span> </div>
+                            <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">@this.Model.UsersCars</span> </div>
                         </div>
                         @{
                             var parms = new Dictionary<string, string>{ { "page", "1" }};
