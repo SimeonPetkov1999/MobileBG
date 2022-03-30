@@ -1,0 +1,88 @@
+﻿@using MobileBG.Web.ViewModels.Cars
+
+@model SearchCarViewModel
+
+<form id="carsForm"></form>
+<div class="container">
+    <div class="row">
+        @foreach (var car in @Model.Cars)
+        {
+            <div class="card p-1 m-2" style="width:16rem;">
+                <a style="text-decoration: none;" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">
+                    <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
+                        <hr>
+                        <p class="card-text">Horse Power: @(car.HorsePower) </p>
+                        <p class="card-text">Price: @((int)car.Price) BGN</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+        }">
+            @{
+                var parms = new Dictionary<string, string> { { "page", this.Model.FirstPageNumber.ToString() } };
+            }
+            <a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]"><strong>First</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+ }">
+            @{
+                parms = new Dictionary<string, string> { { "page", this.Model.PreviousPageNumber.ToString() } };
+            }
+            <a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]" ><strong>Previous</strong></a>
+        </li>
+        @for (int i = Model.PageNumber - 2; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                {
+                    parms = new Dictionary<string, string> { { "page", @i.ToString() } };
+                }
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]">@i</a></li>
+            }
+
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 2; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                {
+                    parms = new Dictionary<string, string> { { "page", @i.ToString() } };
+                }
+                <li class="page-item"><a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]">@i</a></li>
+            }
+
+        }
+        <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
+            @{
+                parms = new Dictionary<string, string> { { "page", @Model.NextPageNumber.ToString() } };
+            }
+            <a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]" ><strong>Next</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
+            @{
+                parms = new Dictionary<string, string> { { "page", @Model.LastPageNumber.ToString() } };
+            }
+            <a class="page-link" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@Url.ActionContext.RouteData.Values["id"]" ><strong>Last</strong></a>
+        </li>
+    </ul>
+</nav>

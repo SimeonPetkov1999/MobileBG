@@ -62,6 +62,7 @@
             </ul>
         </div>
         <hr />
+        <form id="user"></form>
         <div class="container mt-5 mb-2 d-flex">
             <div class="card p-3 profile">
                 <div class="d-flex align-items-center">
@@ -71,7 +72,11 @@
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
                             <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">38</span> </div>
                         </div>
-                        <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-primary">View cars</button> </div>
+                        @{
+                            var parms = new Dictionary<string, string>{ { "page", "1" }};
+                        }
+
+                        <div class="button mt-2 d-flex flex-row align-items-center"> <a form="user" type="submit" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@this.Model.UserId" class="btn btn-sm btn-primary">View cars</a> </div>
                     </div>
                 </div>
             </div>

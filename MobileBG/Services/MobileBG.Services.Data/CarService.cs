@@ -211,6 +211,11 @@ public class CarService : ICarService
         await this.carRepo.SaveChangesAsync();
     }
 
+    public async Task<bool> ValidateCarExistsAsync(Guid carId)
+        => await this.carRepo
+            .AllAsNoTracking()
+            .AnyAsync(x => x.Id == carId);
+
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)
     {
         if (input.MakeId != null)

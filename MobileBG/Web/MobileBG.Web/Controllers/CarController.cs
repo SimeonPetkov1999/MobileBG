@@ -56,8 +56,13 @@ public class CarController : BaseController
     [Authorize]
     public async Task<IActionResult> Details(Guid id)
     {
-        var model = await this.carService.SingleCarAsync(id);
+        var carIsValid = await this.carService.ValidateCarExistsAsync(id);
+        if (carIsValid == false)
+        {
+            return this.NotFound();
+        }
 
+        var model = await this.carService.SingleCarAsync(id);
         return this.View(model);
     }
 
@@ -65,6 +70,11 @@ public class CarController : BaseController
     [Authorize]
     public async Task<IActionResult> Mine(int id = 1)
     {
+        if (id < 1)
+        {
+            return this.NotFound();
+        }
+
         var userId = this.User.GetId();
 
         var model = await this.carService.AllCarsForUserAsync(userId, id, GlobalConstants.ItemsPerPage);
@@ -85,9 +95,9 @@ public class CarController : BaseController
     public async Task<IActionResult> Delete(Guid Id)
     {
         var userId = this.User.GetId();
-        var isValid = await this.carService.ValidateUserOwnsCarAsync(userId, Id);
+        var userIsOwner = await this.carService.ValidateUserOwnsCarAsync(userId, Id);
 
-        if (isValid)
+        if (userIsOwner)
         {
             await this.carService.DeleteCarAsync(Id);
             this.TempData["Success"] = "You succesfully deleted the car!";
@@ -121,10 +131,17 @@ public class CarController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Edit(Guid Id)
     {
-        var model = await this.carService.GetCarDataAsync(Id);
+        var carIsValid = await this.carService.ValidateCarExistsAsync(Id);
 
+        if (carIsValid == false)
+        {
+            this.NotFound();
+        }
+
+        var model = await this.carService.GetCarDataAsync(Id);
         model.Cities = await this.dropDownDataService.GetAllCitiesAsync();
         model.Makes = await this.dropDownDataService.GetAllMakesAsync();
         model.PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
@@ -133,6 +150,7 @@ public class CarController : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Edit(EditCarViewModel input)
     {
         if (this.ModelState.IsValid)
@@ -149,5 +167,27 @@ public class CarController : BaseController
         model.PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync();
 
         return this.View(model);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> ForUser(string Id, [FromQuery] int page)
+    {
+        if (page <= 0)
+        {
+            return this.NotFound();
+        }
+
+        var model = await this.carService.AllCarsForUserAsync(Id, page, GlobalConstants.ItemsPerPage);
+
+        var viewModel = new SearchCarViewModel()
+        {
+            ItemsPerPage = GlobalConstants.ItemsPerPage,
+            PageNumber = page,
+            ItemsCount = model.Count,
+            Cars = model.Cars,
+        };
+
+        return this.View(viewModel);
     }
 }
