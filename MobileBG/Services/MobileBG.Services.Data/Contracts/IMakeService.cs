@@ -10,4 +10,6 @@ public interface IMakeService
     public Task<MakeDetailsViewModel> GetMakeDetialsAsync(Guid makeId);
 
     public Task<bool> CreateModelForMakeAsync(Guid makeId, string modelName);
+
+    public Task EditMakeAsync(EditMakeViewModel model);
 }

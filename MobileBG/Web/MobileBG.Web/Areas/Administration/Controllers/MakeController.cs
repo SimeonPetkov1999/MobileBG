@@ -45,4 +45,34 @@ public class MakeController : AdministrationController
 
         return this.View(model);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid Id)
+    {
+        var model = await this.makeService.GetMakeDetialsAsync(Id);
+
+        var viewModel = new EditMakeViewModel()
+        {
+            Id = Id,
+            Name = model.Name,
+        };
+
+        return this.View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditMakeViewModel model)
+    {
+        if (!this.ModelState.IsValid)
+        {
+            this.TempData["Danger"] = $"Make with name {model.Name} already exist!";
+            return this.RedirectToAction(nameof(this.Edit), new { Id = model.Id });
+        }
+
+        await this.makeService.EditMakeAsync(model);
+
+        this.TempData["Success"] = $"You succesfully updated the make name to {model.Name}";
+
+        return this.RedirectToAction(nameof(this.Edit), new { Id = model.Id });
+    }
 }

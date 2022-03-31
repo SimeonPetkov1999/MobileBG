@@ -14,13 +14,15 @@
     </div>
 </form>
 
+<form id="details"></form>
+
 <div class="row mt-4">
     @foreach (var item in this.Model.Makes)
     {
-        <a asp-action="Details" asp-route-id="@item.Id" style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-4 float-left">
+        <button form="details" asp-action="Details" asp-route-id="@item.Id" type="submit" style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-4 float-left">
             @item.Name
-            <button class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
-            <button class="btn btn-warning btn-sm mr-2 float-right"><i class="fa-solid fa-pen-to-square"></i></button>
-        </a>
+            <a class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></a>
+            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm mr-2 float-right"><i class="fa-solid fa-pen-to-square"></i></a>
+        </button>
     }
 </div>

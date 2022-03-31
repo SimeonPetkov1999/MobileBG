@@ -39,6 +39,18 @@ public class MakeService : IMakeService
         return false;
     }
 
+    public async Task EditMakeAsync(EditMakeViewModel model)
+    {
+        var entity = await this.makeRepo
+            .All()
+            .Where(x => x.Id == model.Id)
+            .FirstOrDefaultAsync();
+
+        entity.Name = model.Name;
+        this.makeRepo.Update(entity);
+        await this.makeRepo.SaveChangesAsync();
+    }
+
     public async Task<ICollection<MakeInfoViewModel>> GetAllMakesAsync(string keyWord)
     {
         var query = this.makeRepo
