@@ -18,4 +18,31 @@ public class MakeController : AdministrationController
         var model = new AllMakesViewModel() { KeyWord = keyWord, Makes = makes };
         return this.View(model);
     }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return this.View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(MakeInputModel input)
+    {
+        if (!this.ModelState.IsValid)
+        {
+            return this.View(input);
+        }
+
+        await this.makeService.CreateMakeAsync(input.Name);
+
+        return this.RedirectToAction(nameof(this.All));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(Guid Id)
+    {
+        var model = await this.makeService.GetMakeDetialsAsync(Id);
+
+        return this.View(model);
+    }
 }

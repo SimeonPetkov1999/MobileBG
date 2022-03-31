@@ -2,18 +2,25 @@
 
 @model AllMakesViewModel
 
-<form class="row g-3">
-  <div class="col-auto">
-    <input asp-for=KeyWord class="form-control" placeholder="Search">
-  </div>
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Search</button>
-  </div>
+<h1 class="text-center">All Makes</h1>
+<hr />
+
+<form class="row">
+    <div class="col-md-3">
+        <input asp-for=KeyWord class="form-control" placeholder="Search">
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
 </form>
 
 <div class="row mt-4">
     @foreach (var item in this.Model.Makes)
     {
-        <a style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-2 float-left">@item.Name</a>
+        <a asp-action="Details" asp-route-id="@item.Id" style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-4 float-left">
+            @item.Name
+            <button class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-warning btn-sm mr-2 float-right"><i class="fa-solid fa-pen-to-square"></i></button>
+        </a>
     }
 </div>

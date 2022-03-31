@@ -1,6 +1,7 @@
 ﻿namespace MobileBG.Services.Data;
 
 using MobileBG.Web.ViewModels.Makes;
+using System;
 
 public class MakeService : IMakeService
 {
@@ -9,6 +10,33 @@ public class MakeService : IMakeService
     public MakeService(IRepository<MakeEntity> makeRepo)
     {
         this.makeRepo = makeRepo;
+    }
+
+    public async Task<Guid> CreateMakeAsync(string makeName)
+    {
+        var entity = new MakeEntity() { Name = makeName, Id = Guid.NewGuid() };
+        await this.makeRepo.AddAsync(entity);
+        await this.makeRepo.SaveChangesAsync();
+
+        return entity.Id;
+    }
+
+    public async Task<bool> CreateModelForMakeAsync(Guid makeId, string modelName)
+    {
+        var make = await this.makeRepo
+            .All()
+            .Include(x => x.Models)
+            .Where(x => x.Id == makeId)
+            .FirstOrDefaultAsync();
+
+        if (make != null && !make.Models.Any(x => x.Name.ToLower() == modelName.ToLower()))
+        {
+            make.Models.Add(new ModelEntity() { Name = modelName });
+            await this.makeRepo.SaveChangesAsync();
+            return true;
+        }
+
+        return false;
     }
 
     public async Task<ICollection<MakeInfoViewModel>> GetAllMakesAsync(string keyWord)
@@ -22,8 +50,21 @@ public class MakeService : IMakeService
         }
 
         var makes = await query.To<MakeInfoViewModel>()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         return makes;
+    }
+
+    public async Task<MakeDetailsViewModel> GetMakeDetialsAsync(Guid makeId)
+    {
+        var make = await this.makeRepo
+             .AllAsNoTracking()
+             .Include(x => x.Models)
+             .Where(x => x.Id == makeId)
+             .To<MakeDetailsViewModel>()
+             .FirstOrDefaultAsync();
+
+        return make;
     }
 }

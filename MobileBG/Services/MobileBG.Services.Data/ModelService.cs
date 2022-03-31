@@ -15,6 +15,7 @@ public class ModelService : IModelService
             .AllAsNoTracking()
             .Where(x => x.MakeId == makeId)
             .To<DropdownDataViewModel>()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         return models;

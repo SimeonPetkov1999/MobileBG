@@ -21,6 +21,7 @@ public class DropDownDataService : IDropDownDataService
         var cities = await this.cityTypeRepo
             .AllAsNoTracking()
             .To<DropdownDataViewModel>()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         return cities;
@@ -31,6 +32,7 @@ public class DropDownDataService : IDropDownDataService
         var makes = await this.makeRepo
             .AllAsNoTracking()
             .To<DropdownDataViewModel>()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         return makes;
@@ -41,6 +43,7 @@ public class DropDownDataService : IDropDownDataService
         var types = await this.petrolTypeRepo
             .AllAsNoTracking()
             .To<DropdownDataViewModel>()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         return types;
