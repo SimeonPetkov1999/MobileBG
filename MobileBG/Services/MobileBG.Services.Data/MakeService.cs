@@ -39,6 +39,24 @@ public class MakeService : IMakeService
         return false;
     }
 
+    public async Task<bool> DeleteMakeAsync(Guid Id)
+    {
+        var make = await this.makeRepo
+            .All()
+            .Include(x => x.Models)
+            .Where(x => x.Id == Id)
+            .FirstOrDefaultAsync();
+
+        if (make != null && make.Models.Any())
+        {
+            return false;
+        }
+
+        this.makeRepo.Delete(make);
+        await this.makeRepo.SaveChangesAsync();
+        return true;
+    }
+
     public async Task EditMakeAsync(EditMakeViewModel model)
     {
         var entity = await this.makeRepo

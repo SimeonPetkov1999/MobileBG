@@ -2,6 +2,8 @@
 
 @model AllMakesViewModel
 
+<partial name="_MessagePartial">
+
 <h1 class="text-center">All Makes</h1>
 <hr />
 
@@ -14,15 +16,16 @@
     </div>
 </form>
 
-<form id="details"></form>
+<form id="delete" method="post"></form>
 
 <div class="row mt-4">
     @foreach (var item in this.Model.Makes)
     {
-        <button form="details" asp-action="Details" asp-route-id="@item.Id" type="submit" style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-4 float-left">
+        <div  type="submit" style="border-radius: 4px;" class="borderR list-group-item list-group-item-action col-md-4 float-left">
             @item.Name
-            <a class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></a>
+            <button form="delete" type="submit" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm mr-2 float-right"><i class="fa-solid fa-pen-to-square"></i></a>
-        </button>
+            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm mr-2 float-right"><i class="fas fa-car"></i></a>
+        </div>
     }
 </div>

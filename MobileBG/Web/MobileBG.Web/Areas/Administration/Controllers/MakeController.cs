@@ -75,4 +75,18 @@ public class MakeController : AdministrationController
 
         return this.RedirectToAction(nameof(this.Edit), new { Id = model.Id });
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(Guid Id)
+    {
+        var isDeleted = await this.makeService.DeleteMakeAsync(Id);
+        if (!isDeleted)
+        {
+            this.TempData["Danger"] = "You cant delete this make because there are models associated with it";
+            return this.RedirectToAction(nameof(this.All), new { Id = Id });
+        }
+
+        this.TempData["Success"] = "Deleted!";
+        return this.RedirectToAction(nameof(this.All), new { Id = Id });
+    }
 }

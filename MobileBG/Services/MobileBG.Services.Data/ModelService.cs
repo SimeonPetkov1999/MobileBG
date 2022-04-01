@@ -9,6 +9,24 @@ public class ModelService : IModelService
         this.modelRepo = modelRepo;
     }
 
+    public async Task<(bool IsDeleted, Guid MakeId)> DeleteModelAsync(Guid makeId)
+    {
+        var model = await this.modelRepo
+            .All()
+            .Include(x => x.Cars)
+            .Where(x => x.Id == makeId)
+            .FirstOrDefaultAsync();
+
+        if (model != null && model.Cars.Any())
+        {
+            return (false, model.MakeId);
+        }
+
+        this.modelRepo.Delete(model);
+        await this.modelRepo.SaveChangesAsync();
+        return (true, model.MakeId);
+    }
+
     public async Task<ICollection<DropdownDataViewModel>> GetModelsForMakeAsync(Guid makeId)
     {
         var models = await this.modelRepo

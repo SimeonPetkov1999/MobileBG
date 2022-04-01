@@ -3,25 +3,27 @@
 
 
 <partial name="_MessagePartial">
-<h1>@this.Model.Name</h1>
+    <h1 class="text-center">@this.Model.Name</h1>
+    <hr />
 
-<form class="row" method="post" asp-controller="Model" asp-action="Create">
-    <input type="hidden" value="@Url.ActionContext.RouteData.Values["id"]" name="makeId" />
-    <div class="col-md-3">
-        <input name="modelName" required class="form-control" placeholder="...">
-    </div>
-    <div class="col">
-        <button type="submit" onclick="check()" class="btn btn-primary mb-3">Create</button>
-    </div>
-</form>
+    <form class="row" method="post" asp-controller="Model" asp-action="Create">
+        <input type="hidden" value="@Url.ActionContext.RouteData.Values["id"]" name="makeId" />
+        <div class="col-md-3">
+            <input name="modelName" required class="form-control" placeholder="Add model for @this.Model.Name">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary mb-3">Create</button>
+        </div>
+    </form>
 
-<div class="row mt-4">
-    @foreach (var item in this.Model.Models)
-    {
-        <a style="border-radius: 4px; text-decoration:none; color:black;" class="borderR list-group-item col-md-4 float-left">
-            @item.Name
-            <button class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
-            <button class="btn btn-warning btn-sm mr-2 float-right"><i class="fa-solid fa-pen-to-square"></i></button>
-        </a>
-    }
-</div>
+    <form id="delete" method="post"></form>
+
+    <div class="row mt-4">
+        @foreach (var item in this.Model.Models.OrderBy(x => x.Name))
+        {
+            <div style="border-radius: 4px; text-decoration:none; color:black;" class="borderR list-group-item col-md-4 float-left">
+                @item.Name
+                <button form="delete" type="submit" asp-controller="Model" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        }
+    </div>
