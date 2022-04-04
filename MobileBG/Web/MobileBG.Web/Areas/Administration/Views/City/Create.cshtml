@@ -1,0 +1,13 @@
+﻿@using MobileBG.Web.ViewModels.Cities
+@model CreateCityInputModel
+
+<h1 class="text-center">Create City</h1>
+
+<form class="col-md-4" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Русе">
+        <span asp-validation-for="Name" class="small text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

@@ -51,6 +51,7 @@ public class Startup
         services.AddTransient<IImageService, ImageService>();
         services.AddTransient<IStatsService, StatsService>();
         services.AddTransient<IMakeService, MakeService>();
+        services.AddTransient<ICityService, CityService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

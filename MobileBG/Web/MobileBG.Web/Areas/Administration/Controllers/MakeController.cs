@@ -35,6 +35,8 @@ public class MakeController : AdministrationController
 
         await this.makeService.CreateMakeAsync(input.Name);
 
+        this.TempData["Success"] = $"You successfully created mak with name {input.Name}";
+
         return this.RedirectToAction(nameof(this.All));
     }
 

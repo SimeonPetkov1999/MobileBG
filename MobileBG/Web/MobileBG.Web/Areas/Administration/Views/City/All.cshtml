@@ -1,0 +1,28 @@
+﻿@using MobileBG.Web.ViewModels.Cities
+@model AllCitiesViewModel
+
+<partial name="_MessagePartial" />
+
+<h1 class="text-center">All cities</h1>
+<hr />
+
+<form class="row">
+    <div class="col-md-3">
+        <input asp-for=KeyWord class="form-control" placeholder="Search">
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+</form>
+
+<form id="delete" method="post"></form>
+
+<div class="row mt-4">
+    @foreach (var item in this.Model.Cities.OrderBy(x => x.Name))
+    {
+        <div style="border-radius: 4px; text-decoration:none; color:black;" class="list-group-item col-md-4 float-left">
+            @item.Name
+            <button form="delete" type="submit" asp-controller="City" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm float-right"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+    }
+</div>
