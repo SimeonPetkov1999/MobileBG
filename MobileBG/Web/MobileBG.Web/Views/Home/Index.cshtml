@@ -1,9 +1,141 @@
-﻿@using MobileBG.Common
+﻿@model IndexViewModel
+@using MobileBG.Common
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
+@section Head
+{
+<style>
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: 5px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 100px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+
+        .card-counter:hover {
+            box-shadow: 4px 4px 20px #DADADA;
+            transition: .3s linear all;
+        }
+
+        .card-counter.primary {
+            background-color: #eaeaea;
+            color: #FFF;
+        }
+
+        .card-counter.danger {
+            background-color: #228900;
+            color: #FFF;
+        }
+
+        .card-counter.info {
+            background-color: #d60000;
+            color: #FFF;
+        }
+
+        .card-counter i {
+            font-size: 5em;
+            opacity: 0.5;
+        }
+
+        .card-counter .count-numbers {
+            position: absolute;
+            right: 35px;
+            top: 20px;
+            font-size: 32px;
+            display: block;
+        }
+
+        .card-counter .count-name {
+            position: absolute;
+            right: 35px;
+            top: 65px;
+            font-style: italic;
+            text-transform: capitalize;
+            opacity: 0.5;
+            display: block;
+            font-size: 18px;
+        }
+</style>
+}
+
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+</div>
+
+<div class="container align-items-center mb-5">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card-counter primary">
+                <i style="color:black" class="fas fa-list"></i>
+                <span style="color:black" class="count-numbers">@this.Model.MakesCount</span>
+                <span style="color:black" class="count-name">Makes</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-counter danger">
+                <i class="fas fa-car"></i>
+                <span class="count-numbers">@this.Model.CarsCount</span>
+                <span class="count-name">Cars</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card-counter info">
+                <i class="fa fa-users"></i>
+                <span class="count-numbers">@this.Model.UsersCount</span>
+                <span class="count-name">Users</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-center">
+    <h2 class="display-7">Newest cars</h2>
+    <hr />
+
+</div>
+
+<div class="box" style="width: 96%; margin: auto;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        @*<ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>*@
+
+        @{
+            var index = 0;
+        }
+        <div class="carousel-inner">
+
+            @foreach (var car in this.Model.Cars)
+            {
+
+                <div class="carousel-item @(index==0 ? "active":"")">
+                    <img class="d-block w-100" style="height: 500px; object-fit: cover;" src="@car.ImageUrl" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>@car.MakeName @car.ModelName (@car.Price BGN)</h3>
+                    </div>
+                </div>
+                index++;
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>

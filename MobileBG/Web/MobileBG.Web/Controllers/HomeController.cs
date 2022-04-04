@@ -1,12 +1,32 @@
 ﻿namespace MobileBG.Web.Controllers;
 
 using System.Diagnostics;
+using MobileBG.Web.ViewModels;
 
 public class HomeController : BaseController
 {
-    public IActionResult Index()
+    private readonly IStatsService statsService;
+    private readonly ICarService carService;
+
+    public HomeController(
+        IStatsService statsService,
+        ICarService carService)
     {
-        return this.View();
+        this.statsService = statsService;
+        this.carService = carService;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var viewModel = new IndexViewModel()
+        {
+            CarsCount = await this.statsService.GetCountOfCars(),
+            MakesCount = await this.statsService.GetCountOfMakes(),
+            UsersCount = await this.statsService.GetCountOfUsers(),
+            Cars = await this.carService.GetLastAddedCarsAsync(),
+        };
+
+        return this.View(viewModel);
     }
 
     public IActionResult Privacy()

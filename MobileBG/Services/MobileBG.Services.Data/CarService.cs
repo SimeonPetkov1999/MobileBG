@@ -1,6 +1,7 @@
 ﻿namespace MobileBG.Services.Data;
 
 using MobileBG.Web.ViewModels;
+using System.Collections.Generic;
 
 public class CarService : ICarService
 {
@@ -215,6 +216,15 @@ public class CarService : ICarService
         => await this.carRepo
             .AllAsNoTracking()
             .AnyAsync(x => x.Id == carId);
+
+    public async Task<ICollection<CarInfoViewModel>> GetLastAddedCarsAsync()
+        => await this.carRepo.AllAsNoTracking()
+         .Include(x => x.Make)
+         .Include(x => x.Model)
+         .OrderByDescending(x => x.CreatedOn)
+         .Take(7)
+         .To<CarInfoViewModel>()
+         .ToListAsync();
 
     private IQueryable<CarEntity> ApplyFilters(SearchCarViewModel input, IQueryable<CarEntity> query)
     {

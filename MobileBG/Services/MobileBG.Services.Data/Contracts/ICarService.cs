@@ -25,4 +25,6 @@ public interface ICarService
     public Task<EditCarViewModel> GetCarDataAsync(Guid carId);
 
     public Task UpdateCarDataAsync(EditCarViewModel input);
+
+    public Task<ICollection<CarInfoViewModel>> GetLastAddedCarsAsync();
 }
