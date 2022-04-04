@@ -1,4 +1,4 @@
-﻿//#pragma warning disable SA1200
+﻿#pragma warning disable SA1200
 
 global using System;
 global using System.Collections.Generic;
@@ -13,4 +13,4 @@ global using MobileBG.Services.Data.Contracts;
 global using MobileBG.Services.Mapping;
 global using MobileBG.Web.ViewModels.Cars;
 
-//#pragma warning restore SA1200
+#pragma warning restore SA1200

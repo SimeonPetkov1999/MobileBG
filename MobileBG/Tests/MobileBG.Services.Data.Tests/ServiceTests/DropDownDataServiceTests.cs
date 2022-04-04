@@ -36,7 +36,6 @@ public class DropDownDataServiceTests
         Assert.Equal(3, result.Count);
     }
 
-
     [Fact]
     public async void GetAllMakesAsyncShouldReturnAllMakes()
     {

@@ -1,4 +1,4 @@
-﻿//#pragma warning disable SA1200
+﻿#pragma warning disable SA1200
 
 global using System;
 global using System.Collections.Generic;
@@ -14,4 +14,4 @@ global using MockQueryable.Moq;
 global using Moq;
 global using Xunit;
 
-//#pragma warning restore SA1200
+#pragma warning restore SA1200
