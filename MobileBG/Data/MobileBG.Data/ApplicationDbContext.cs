@@ -12,8 +12,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     {
     }
 
-    public DbSet<Setting> Settings { get; set; }
-
     public DbSet<CarEntity> Cars { get; set; }
 
     public DbSet<CityEntity> Cities { get; set; }

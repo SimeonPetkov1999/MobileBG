@@ -28,6 +28,5 @@ global using MobileBG.Services.Messaging;
 global using MobileBG.Web.Infrastructure;
 global using MobileBG.Web.ViewModels;
 global using MobileBG.Web.ViewModels.Cars;
-global using MobileBG.Web.ViewModels.Settings;
 
 #pragma warning restore SA1200

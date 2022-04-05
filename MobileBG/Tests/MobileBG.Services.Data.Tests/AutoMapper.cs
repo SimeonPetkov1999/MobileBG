@@ -1,5 +1,7 @@
 ﻿namespace MobileBG.Services.Data.Tests;
 
+using MobileBG.Web.ViewModels.Makes;
+
 public static class AutoMapper
 {
     public static void Configure()
@@ -7,6 +9,8 @@ public static class AutoMapper
         AutoMapperConfig.RegisterMappings(typeof(CityInfoViewModel).GetTypeInfo().Assembly);
 
         AutoMapperConfig.RegisterMappings(typeof(DropdownDataViewModel).GetTypeInfo().Assembly);
+
+        AutoMapperConfig.RegisterMappings(typeof(MakeInfoViewModel).GetTypeInfo().Assembly);
     }
 }
 

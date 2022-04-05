@@ -22,7 +22,6 @@ public class ApplicationDbContextSeeder : ISeeder
                           {
                               new RolesSeeder(),
                               new UserSeeder(),
-                              new SettingsSeeder(),
                               new MakeModelSeeder(),
                               new CitiesSeeder(),
                               new PetrolTypeSeeder(),

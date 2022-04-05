@@ -20,6 +20,7 @@ public class DropDownDataServiceTests
     public async void GetAllCitiesAsyncShouldReturnAllCities()
     {
         this.InitializeRepos();
+        AutoMapper.Configure();
 
         var cities = new List<CityEntity>()
         {
@@ -40,6 +41,7 @@ public class DropDownDataServiceTests
     public async void GetAllMakesAsyncShouldReturnAllMakes()
     {
         this.InitializeRepos();
+        AutoMapper.Configure();
 
         var makes = new List<MakeEntity>()
         {
@@ -60,6 +62,7 @@ public class DropDownDataServiceTests
     public async void GetAllPetrolTypesAsyncShouldReturnAllPetrolTypes()
     {
         this.InitializeRepos();
+        AutoMapper.Configure();
 
         var types = new List<PetrolTypeEntity>()
         {

@@ -43,7 +43,6 @@ public class Startup
 
         // Application services
         services.AddTransient<IEmailSender, NullMessageSender>();
-        services.AddTransient<ISettingsService, SettingsService>();
         services.AddTransient<ICarService, CarService>();
         services.AddTransient<IModelService, ModelService>();
         services.AddTransient<IDropDownDataService, DropDownDataService>();
