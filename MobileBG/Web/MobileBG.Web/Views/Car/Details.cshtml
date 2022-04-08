@@ -1,9 +1,14 @@
 ﻿@using MobileBG.Common
 @using MobileBG.Web.ViewModels.Cars
 @model SingleCarViewModel
+@{
+    this.ViewData["Title"] = this.Model.Make + "  " + this.Model.Model;
+}
 
 @section Head{
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+
+
 
 <style>
     .profile {
@@ -32,15 +37,14 @@
     .number1 {
         font-weight: 500
     }
-
 </style>
 }
-
-@(this.ViewData["Title"]=this.Model.Make + " " + this.Model.Model)
 
 <div class="container">
     <div class="row">
         <div class="col">
+            <span style="font-family:Monaco, sans-serif; font-size:25px">@this.ViewData["Title"]</span>
+            <span style="float:right; font-size:20px; margin-right: 26px" class="badge rounded-pill bg-info text-dark">@this.Model.Price Lv.</span>
             <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-width="500">
                 @foreach (var link in this.Model.Images)
                 {
@@ -49,32 +53,28 @@
             </div>
         </div>
         <div class="col">
-            <ul class="list-unstyled">
-                <li>Price:  @this.Model.Price BGN</li>
-                <li>Make:   @this.Model.Make</li>
-                <li>Model:   @this.Model.Model</li>
-                <li>Horse power:  @this.Model.HorsePower</li>
-                <li>KM: @this.Model.Km  </li>
-                <li>Petrol type: @this.Model.PetrolType</li>
-                <li>Year made:   @this.Model.YearMade</li>
-                <li>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
-                <li>City:  @this.Model.CityName</li>
-                <li>Description:  @this.Model.Description</li>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-tachometer-alt"></i>Horse power:  @this.Model.HorsePower</li>
+                <li class="list-group-item"><i style="margin-right:28px" class="fa-lg fas fa-road"></i>KM: @this.Model.Km  </li>
+                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-gas-pump"></i>Petrol type: @this.Model.PetrolType</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-calendar-alt"></i>Year made:   @this.Model.YearMade</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-user"></i>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
+                <li class="list-group-item"><i style="margin-right:35px" class="fa-lg fas fa-building"></i>City:  @this.Model.CityName</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-align-left"></i>Description:  @this.Model.Description</li>
             </ul>
         </div>
-        <hr />
         <form id="user"></form>
         <div class="container mt-5 mb-2 d-flex">
             <div class="card p-3 profile">
                 <div class="d-flex align-items-center">
                     <div class="image"> <img src="~/user.png" class="rounded" width="135"> </div>
                     <div class="ml-3">
-                        <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4><span>+359887188511</span>
+                        <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4><span>+359887188766</span>
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
                             <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">@this.Model.UsersCars</span> </div>
                         </div>
                         @{
-                            var parms = new Dictionary<string, string>{ { "page", "1" }};
+                            var parms = new Dictionary<string, string> { { "page", "1" } };
                         }
 
                         <div class="button mt-2 d-flex flex-row align-items-center"> <a form="user" type="submit" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@this.Model.UserId" class="btn btn-sm btn-primary">View cars</a> </div>

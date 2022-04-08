@@ -1,6 +1,11 @@
 ﻿@using MobileBG.Web.ViewModels.Cars
 
 @model SearchCarViewModel
+
+@{
+    this.ViewData["Title"] = "Unapproved cars";
+}
+
 <form id="approve" method="post"></form>
 <form id="delete" method="post"></form>
 <form id="carsForm"></form>

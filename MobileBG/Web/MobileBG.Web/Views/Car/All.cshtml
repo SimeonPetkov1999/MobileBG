@@ -1,6 +1,9 @@
 ﻿@using MobileBG.Web.ViewModels.Cars
 
 @model SearchCarViewModel
+@{
+    this.ViewData["Title"] = "All cars";
+}
 
 <form id="search" method="get">
     <div class="row">
@@ -96,13 +99,13 @@
         {
             <div class="card p-1 m-2" style="width:16rem;">
                 <a style="text-decoration: none;" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">
-                <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">             
-                <div class="card-body">
-                    <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
-                      <hr>
-                    <p class="card-text">Horse Power: @(car.HorsePower) </p>                   
-                    <p class="card-text">Price: @((int)car.Price) BGN</p>                   
-                </div>             
+                    <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
+                        <hr>
+                        <p class="card-text">Horse Power: @(car.HorsePower) </p>
+                        <p class="card-text">Price: @((int)car.Price) BGN</p>
+                    </div>
                 </a>
             </div>
         }

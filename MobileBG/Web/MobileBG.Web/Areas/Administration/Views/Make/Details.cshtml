@@ -1,6 +1,9 @@
 ﻿@using MobileBG.Web.ViewModels.Makes
 @model MakeDetailsViewModel
 
+@{
+    this.ViewData["Title"] = this.Model.Name;
+}
 
 <partial name="_MessagePartial">
     <h1 class="text-center">@this.Model.Name</h1>
