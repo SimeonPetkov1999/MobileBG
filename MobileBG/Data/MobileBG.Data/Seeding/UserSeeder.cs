@@ -16,5 +16,11 @@ public class UserSeeder : ISeeder
             var user = dbContext.Users.FirstOrDefault(x => x.Email == "Admin@admin.com");
             await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
         }
+
+        if (userManager.Users.Any(x => x.Email.ToLower() == "simeon99@abv.bg") == false)
+        {
+            await userManager.CreateAsync(new ApplicationUser() { UserName = "simeon99@abv.bg", Email = "simeon99@abv.bg", Id = Guid.NewGuid().ToString() }, "123456");
+            dbContext.SaveChanges();
+        }
     }
 }

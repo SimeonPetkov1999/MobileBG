@@ -25,6 +25,7 @@ public class ApplicationDbContextSeeder : ISeeder
                               new MakeModelSeeder(),
                               new CitiesSeeder(),
                               new PetrolTypeSeeder(),
+                              new CarSeeder(),
                           };
 
         foreach (var seeder in seeders)

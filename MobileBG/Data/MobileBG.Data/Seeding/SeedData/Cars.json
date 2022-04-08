@@ -1,0 +1,152 @@
+[
+  {
+    "Make": "Ford",
+    "Model": "Mustang",
+    "PetrolType": "Petrol",
+    "City": "Пловдив",
+    "Price": 120000.00,
+    "YearMade": 2018,
+    "Km": 25000,
+    "HorsePower": 460,
+    "Description": "Hear the roar of a Mustang as the ground starts to tremble and your legs start to shake. As always, Mustang draws upon its performance roots with features for enhanced handling, high-powered engine options and a classic Mustang design. For 2022, the soul-stirring Mustang Mach 1 and Mach 1 Premium stand at the pinnacle of 5.0L performance. The personally customizable Mach 1 continues its legacy, engineered specifically for quick turns and spirited drives.",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412117/MobileBG/318a915a-423b-47b4-9577-78f8c469c9f9.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412117/MobileBG/a96b0967-1996-46dc-a477-ccd14ad607e5.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412118/MobileBG/32f4b8f9-b9a3-4001-9a97-0c29c95dfeb8.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412118/MobileBG/3eeb9f17-e160-44cd-b0eb-18f49f21fbef.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412119/MobileBG/e59559ae-2fe9-4a13-aec2-89ee1ef5f59a.jpg"
+    ]
+  },
+  {
+    "Make": "BMW",
+    "Model": "M3",
+    "PetrolType": "Petrol",
+    "City": "Русе",
+    "Price": 160000.00,
+    "YearMade": 2021,
+    "Km": 10000,
+    "HorsePower": 473,
+    "Description": "Whenever the letter M and the number 3 are together on a model badge the driver can expect a great experience, and that's true once again for the 2021 BMW M3 sedan. Sure, it might get ridiculed for its overwrought, oversize grille, but row its satisfying manual gearbox or chase its silky six-cylinder to the redline and the styling stigma is forgotten.",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412733/MobileBG/dc799fef-20af-42c7-b3c5-67f1d5306f7f.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412733/MobileBG/3f44a21e-0d89-4a4e-b6ed-1454efcf9640.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412734/MobileBG/bb89a262-b3b2-435f-ae5b-336ac7743efd.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412734/MobileBG/8e4b6bd1-d5de-4835-afef-fe968defec7e.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412735/MobileBG/ff579129-01ff-4698-abf2-ef47f6e7e4c7.jpg"
+    ]
+  },
+  {
+    "Make": "Ferrari",
+    "Model": "599 GTB Fiorano",
+    "PetrolType": "Petrol",
+    "City": "София",
+    "Price": 120000.00,
+    "YearMade": 2006,
+    "Km": 50000,
+    "HorsePower": 550,
+    "Description": "Amazing car",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648372874/MobileBG/67aa78a3-b07c-443f-90e3-d159149fa971.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648372874/MobileBG/d68ddaac-f78b-43f0-95a7-975b3df7e8da.jpg"
+    ]
+  },
+  {
+    "Make": "Audi",
+    "Model": "A3",
+    "PetrolType": "Petrol",
+    "City": "Русе",
+    "Price": 20000.00,
+    "YearMade": 2010,
+    "Km": 150000,
+    "HorsePower": 151,
+    "Description": "New description",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648372772/MobileBG/9d817b68-23d7-40de-89e4-720bc2876b11.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648372773/MobileBG/bebc2ed6-b9c6-414b-b8c4-5a2503e0fec4.jpg"
+    ]
+  },
+  {
+    "Make": "Tesla",
+    "Model": "Model S",
+    "PetrolType": "Electric",
+    "City": "Хасково",
+    "Price": 80000.00,
+    "YearMade": 2018,
+    "Km": 1000,
+    "HorsePower": 500,
+    "Description": "updated",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648554320/MobileBG/2ff9bdde-27fa-4c5f-b4bb-7ebf9f733392.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648561776/MobileBG/b2b0615f-facd-481c-a95b-8c373eb6cb15.jpg"
+    ]
+  },
+  {
+    "Make": "Audi",
+    "Model": "A8",
+    "PetrolType": "Diesel",
+    "City": "Русе",
+    "Price": 55000.00,
+    "YearMade": 2018,
+    "Km": 10000,
+    "HorsePower": 350,
+    "Description": "Nice Audi",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648294887/MobileBG/a240f759-dd63-4d9e-b134-50d4c0d4a845.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1648294887/MobileBG/4bde1c16-9109-429c-b6fc-21e31fbcf0a9.jpg"
+    ]
+  },
+  {
+    "Make": "Lamborghini",
+    "Model": "Aventador",
+    "PetrolType": "Petrol",
+    "City": "Русе",
+    "Price": 490000.00,
+    "YearMade": 2014,
+    "Km": 100000,
+    "HorsePower": 700,
+    "Description": "Revolutionary thinking is at the heart of every idea from Automobili Lamborghini. Whether it is aerospace-inspired design or technologies applied to the naturally aspirated V12 engine or carbon-fiber structure, going beyond accepted limits is part of our philosophy. The Aventador advances every concept of performance, immediately establishing itself as the benchmark for the super sports car sector. Giving a glimpse of the future today, it comes from a family of supercars already considered legen",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412283/MobileBG/68fab14e-f653-4c32-b260-ee664b2171c7.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412283/MobileBG/abbbf88d-8a3d-4e0a-85fc-b0a0057f5d00.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412284/MobileBG/610a8296-9544-4a23-bc0e-e428a798fc60.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412284/MobileBG/dea46423-f28c-4ca7-ab81-d201739e03bd.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649412284/MobileBG/69ace2a8-30ef-4e64-9e2c-5ded42f74d51.jpg"
+    ]
+  },
+  {
+    "Make": "Audi",
+    "Model": "R8",
+    "PetrolType": "Petrol",
+    "City": "Русе",
+    "Price": 350000.00,
+    "YearMade": 2021,
+    "Km": 5000,
+    "HorsePower": 532,
+    "Description": "The Audi R8 performance Coupe brings the racing-inspired performance you seek with uncompromised styling. This is your opportunity to enjoy the exhilarating performance that lies within.",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411082/MobileBG/8de5051f-ca41-481f-831c-cf521f8fa3e9.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411083/MobileBG/4562b4d6-aeda-498b-b017-3ef7e69e8a22.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411083/MobileBG/f9aae420-ddc3-43ee-a88e-19199bbebf73.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411084/MobileBG/70f26e3b-de14-44f0-bedb-97b07dc6ecea.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411084/MobileBG/7f3ad36e-e587-4a60-8c96-ffcbd6fad717.jpg"
+    ]
+  },
+  {
+    "Make": "Audi",
+    "Model": "RS 6",
+    "PetrolType": "Petrol",
+    "City": "София",
+    "Price": 280000.00,
+    "YearMade": 2021,
+    "Km": 4000,
+    "HorsePower": 650,
+    "Description": "\r\nWhether it's a business meeting or a family outing - say \"Yes!\" for Audi RS 6 Avant. Because this exclusive sports car offers top performance on the road, combined with excellent suitability for everyday use. Performance is an attitude.",
+    "ImageLinks": [
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411736/MobileBG/855a68d9-4f02-4f0f-b41d-0bcd5ea7c1ec.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411736/MobileBG/8cbdef04-a847-458a-ba21-0dcff61d1335.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/d90b95f9-3909-4c0e-83be-43b49243242f.jpg",
+      "http://res.cloudinary.com/dwibqwxne/image/upload/v1649411738/MobileBG/5561a38d-451e-4656-b6d4-e59e18446af5.jpg"
+    ]
+  }
+]

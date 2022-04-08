@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using Newtonsoft.Json;
 
 public static class Program
 {
@@ -49,9 +51,35 @@ public static class Program
 
     private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
     {
-        var sw = Stopwatch.StartNew();
+        var context = serviceProvider.GetService<ApplicationDbContext>();
 
-        Console.WriteLine(sw.Elapsed);
+        var cars = await context
+            .Cars
+            .Include(x => x.Make)
+            .Include(x => x.Model)
+            .Include(x => x.PetrolType)
+            .Include(x => x.Images)
+            .Include(x => x.City)
+            .ToListAsync();
+
+        var obj = cars.Select(x => new
+        {
+            Make = x.Make.Name,
+            Model = x.Model.Name,
+            PetrolType = x.PetrolType.Name,
+            City = x.City.Name,
+            Price = x.Price,
+            YearMade = x.YearMade,
+            Km = x.Km,
+            HorsePower = x.HorsePower,
+            Description = x.Description,
+            ImageLinks = x.Images.Select(x => x.ImageUrl),
+        });
+
+        var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+
+        File.WriteAllText(@"C:\Simeon\Repos\MobileBG\MobileBG\Tests\Sandbox\Cars.json", json);
+
         return await Task.FromResult(0);
     }
 
