@@ -95,7 +95,7 @@ public class CarService : ICarService
 
         var count = await query.CountAsync();
 
-        var cars = await this.GetCarData(page, itemsPerPage, query);
+        var cars = await this.GetCarDataAsync(page, itemsPerPage, query);
 
         return new CarDataViewModel() { Cars = cars, Count = count };
     }
@@ -144,7 +144,7 @@ public class CarService : ICarService
 
         var count = query.Count();
 
-        var cars = await this.GetCarData(page, itemsPerPage, query);
+        var cars = await this.GetCarDataAsync(page, itemsPerPage, query);
 
         var model = new CarDataViewModel() { Cars = cars, Count = count };
 
@@ -285,7 +285,7 @@ public class CarService : ICarService
         return query;
     }
 
-    private async Task<List<CarInfoViewModel>> GetCarData(int page, int itemsPerPage, IQueryable<CarEntity> query)
+    private async Task<List<CarInfoViewModel>> GetCarDataAsync(int page, int itemsPerPage, IQueryable<CarEntity> query)
         => await query
              .Include(x => x.Make)
              .Include(x => x.Model)

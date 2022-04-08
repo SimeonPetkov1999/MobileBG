@@ -11,6 +11,8 @@ public static class AutoMapper
         AutoMapperConfig.RegisterMappings(typeof(DropdownDataViewModel).GetTypeInfo().Assembly);
 
         AutoMapperConfig.RegisterMappings(typeof(MakeInfoViewModel).GetTypeInfo().Assembly);
+
+        AutoMapperConfig.RegisterMappings(typeof(CarInfoViewModel).GetTypeInfo().Assembly);
     }
 }
 
