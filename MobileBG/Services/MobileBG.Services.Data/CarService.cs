@@ -140,7 +140,8 @@ public class CarService : ICarService
     {
         var query = this.carRepo
              .AllAsNoTracking()
-             .Where(x => x.UserId == userId);
+             .Where(x => x.UserId == userId)
+             .Where(x => x.IsApproved == true);
 
         var count = query.Count();
 
@@ -221,6 +222,7 @@ public class CarService : ICarService
         => await this.carRepo.AllAsNoTracking()
          .Include(x => x.Make)
          .Include(x => x.Model)
+         .Where(x => x.IsApproved == true)
          .OrderByDescending(x => x.CreatedOn)
          .Take(7)
          .To<CarInfoViewModel>()

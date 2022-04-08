@@ -60,7 +60,7 @@
                 <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-calendar-alt"></i>Year made:   @this.Model.YearMade</li>
                 <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-user"></i>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
                 <li class="list-group-item"><i style="margin-right:35px" class="fa-lg fas fa-building"></i>City:  @this.Model.CityName</li>
-                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-align-left"></i>Description:  @this.Model.Description</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-align-left"></i>@this.Model.Description</li>
             </ul>
         </div>
         <form id="user"></form>
@@ -73,6 +73,7 @@
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
                             <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">@this.Model.UsersCars</span> </div>
                         </div>
+
                         @{
                             var parms = new Dictionary<string, string> { { "page", "1" } };
                         }

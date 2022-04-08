@@ -17,10 +17,12 @@
         @foreach (var car in @Model.Cars)
         {
             <div class="card p-1 m-2" style="width:16rem;">
-                <img class="card-img-top" src="@car.ImageUrl" style="max-height:150px" alt="Card image cap">
+                <img class="card-img-top" src="@car.ImageUrl" style="height: 160px; object-fit: cover;" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">@car.MakeName @car.ModelName @car.Price</h5>
-                    <p class="card-text">Some .</p>
+                   <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
+                        <hr>
+                        <p class="card-text">Horse Power: @(car.HorsePower) </p>
+                        <p class="card-text">Price: @((int)car.Price) BGN</p>
                 </div>
                 <div class="card-footer">
                     <button form="carsForm" class="btn btn-primary btn-sm m-1" type="submit" asp-area="" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">View</button>

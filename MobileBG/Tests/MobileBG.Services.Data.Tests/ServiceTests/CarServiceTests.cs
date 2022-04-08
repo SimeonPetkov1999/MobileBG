@@ -126,6 +126,7 @@ public class CarServiceTests
                 Make = new MakeEntity() { Id = Guid.NewGuid() },
                 Model = new ModelEntity() { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
+                IsApproved = true,
             },
         }.AsQueryable();
 

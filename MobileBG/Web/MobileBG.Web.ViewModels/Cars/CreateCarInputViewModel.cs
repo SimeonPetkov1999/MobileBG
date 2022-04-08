@@ -43,8 +43,8 @@ public class CreateCarInputViewModel
 
     [Display(Name = "Choose maximum 5 images (.jpg, .png)")]
     [MaxLength(5, ErrorMessage = "Maximum 5 images!")]
-    [AllowedExtensions(".jpg", ".png")]
-    [MaxFileSize(3 * 1000 * 1000)] // 3mb
+    [AllowedExtensions(".jpg", ".png", ".jpeg")]
+    [MaxFileSize(5 * 1000 * 1000)] // 5mb
     [Required(ErrorMessage = "You need to upload atleast one picture!")]
     public ICollection<IFormFile> Images { get; set; }
 
