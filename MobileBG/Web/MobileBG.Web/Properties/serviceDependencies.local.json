@@ -1,13 +1,16 @@
 {
   "dependencies": {
-    "secrets1": {
-      "type": "secrets.user"
-    },
     "mssql1": {
       "secretStore": "LocalSecretsFile",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/mobilebg-server/databases/MobileBG.db",
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:DefaultConnection"
+    },
+    "secrets1": {
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "secrets",
+      "connectionId": ""
     }
   }
 }
