@@ -10,7 +10,7 @@ public class MakeModelSeeder : ISeeder
             return;
         }
 
-        var json = await File.ReadAllTextAsync(@"..\..\Data\MobileBG.Data\Seeding\SeedData\CarMakesAndModels.json");
+        var json = await File.ReadAllTextAsync(@"wwwroot/CarMakesAndModels.json");
 
         var model = JsonSerializer.Deserialize<List<MakeDto>>(json);
         var makes = new List<MakeEntity>();

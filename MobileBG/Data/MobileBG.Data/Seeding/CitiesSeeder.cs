@@ -9,7 +9,7 @@ public class CitiesSeeder : ISeeder
             return;
         }
 
-        var json = await File.ReadAllTextAsync(@"..\..\Data\MobileBG.Data\Seeding\SeedData\Cities.json");
+        var json = await File.ReadAllTextAsync(@"wwwroot/Cities.json");
 
         var cities = JsonSerializer.Deserialize<List<string>>(json);
         var entities = new List<CityEntity>();

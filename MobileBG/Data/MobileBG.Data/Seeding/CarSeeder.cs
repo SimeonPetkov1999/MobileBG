@@ -11,7 +11,7 @@ public class CarSeeder : ISeeder
             return;
         }
 
-        var json = await File.ReadAllTextAsync(@"..\..\Data\MobileBG.Data\Seeding\SeedData\Cars.json");
+        var json = await File.ReadAllTextAsync(@"wwwroot/Cars.json");
 
         var cars = JsonSerializer.Deserialize<List<CarDto>>(json);
         var carsEntities = new List<CarEntity>();

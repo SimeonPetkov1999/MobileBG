@@ -9,7 +9,7 @@ public class PetrolTypeSeeder : ISeeder
             return;
         }
 
-        var json = await File.ReadAllTextAsync(@"..\..\Data\MobileBG.Data\Seeding\SeedData\PetrolTypes.json");
+        var json = await File.ReadAllTextAsync(@"wwwroot/PetrolTypes.json");
 
         var types = JsonSerializer.Deserialize<List<string>>(json);
         var entities = new List<PetrolTypeEntity>();

@@ -10,15 +10,15 @@
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\stylecop.json" />
-  </ItemGroup>
+  <!--<ItemGroup>
+    <None Remove="Seeding\SeedData\CarMakesAndModels.json" />
+    <None Remove="Seeding\SeedData\Cars.json" />
+    <None Remove="Seeding\SeedData\Cities.json" />
+    <None Remove="Seeding\SeedData\PetrolTypes.json" />
+  </ItemGroup>-->
 
   <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,15 +42,6 @@
     <ProjectReference Include="..\..\MobileBG.Common\MobileBG.Common.csproj" />
     <ProjectReference Include="..\MobileBG.Data.Common\MobileBG.Data.Common.csproj" />
     <ProjectReference Include="..\MobileBG.Data.Models\MobileBG.Data.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Seeding\SeedData\CarMakesAndModels.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Seeding\SeedData\Cities.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
