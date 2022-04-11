@@ -1,0 +1,39 @@
+﻿@using MobileBG.Web.ViewModels.Blogs
+@model CreateBlogViewModel
+
+@section Head
+{
+<script src="https://cdn.tiny.cloud/1/s9a5l4wdqopspp4ktfwp6zi2etuc1rsvasl67jsf028pma6c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+}
+
+<h1 class="text-center">Create blog</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input class="form-control" asp-for="Title" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <input class="form-control" asp-for="Image" />
+    </div>
+
+    <div class="form-group">
+        <textarea asp-for=Content>
+        </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+@section Scripts
+    {
+<script>
+        tinymce.init({
+       selector: 'textarea',
+       plugins: 'preview searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap emoticons',
+       menubar: 'file edit view insert format tools table help',
+       toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+    });
+</script>
+    }

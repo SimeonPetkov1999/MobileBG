@@ -52,6 +52,7 @@ public class Startup
         services.AddTransient<IStatsService, StatsService>();
         services.AddTransient<IMakeService, MakeService>();
         services.AddTransient<ICityService, CityService>();
+        services.AddTransient<IBlogService, BlogService>();
         services.AddTransient<IEmailSender>(
                  serviceProvider => new SendGridEmailSender(Common.Encoding.Base64Decode(this.configuration.GetSection("SendGrid:ApiKey").Value)));
     }

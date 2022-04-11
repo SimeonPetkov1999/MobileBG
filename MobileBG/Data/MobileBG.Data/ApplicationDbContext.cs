@@ -24,6 +24,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
 
     public DbSet<PetrolTypeEntity> PetrolTypes { get; set; }
 
+    public DbSet<BlogEntity> Blogs { get; set; }
+
     public override int SaveChanges() => this.SaveChanges(true);
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
