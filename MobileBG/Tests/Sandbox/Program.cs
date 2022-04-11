@@ -51,36 +51,10 @@ public static class Program
 
     private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
     {
-        var context = serviceProvider.GetService<ApplicationDbContext>();
+        var mailService = serviceProvider.GetService<IEmailSender>();
+        await mailService.SendEmailAsync("mobile-bg@abv.bg", "MobileBG", "simeon99@abv.bg", "TestMail", "test email from sandbox");
 
-        var cars = await context
-            .Cars
-            .Include(x => x.Make)
-            .Include(x => x.Model)
-            .Include(x => x.PetrolType)
-            .Include(x => x.Images)
-            .Include(x => x.City)
-            .ToListAsync();
-
-        var obj = cars.Select(x => new
-        {
-            Make = x.Make.Name,
-            Model = x.Model.Name,
-            PetrolType = x.PetrolType.Name,
-            City = x.City.Name,
-            Price = x.Price,
-            YearMade = x.YearMade,
-            Km = x.Km,
-            HorsePower = x.HorsePower,
-            Description = x.Description,
-            ImageLinks = x.Images.Select(x => x.ImageUrl),
-        });
-
-        var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-
-        File.WriteAllText(@"C:\Simeon\Repos\MobileBG\MobileBG\Tests\Sandbox\Cars.json", json);
-
-        return await Task.FromResult(0);
+        return 1;
     }
 
     private static void ConfigureServices(ServiceCollection services)
@@ -104,6 +78,7 @@ public static class Program
         services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
         // Application services
-        services.AddTransient<IEmailSender, NullMessageSender>();
+        services.AddTransient<IEmailSender>(
+                serviceProvider => new SendGridEmailSender("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"));
     }
 }

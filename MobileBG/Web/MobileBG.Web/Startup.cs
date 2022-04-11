@@ -1,5 +1,6 @@
 ﻿namespace MobileBG.Web;
 using System.Reflection;
+using System.Text;
 
 public class Startup
 {
@@ -51,6 +52,8 @@ public class Startup
         services.AddTransient<IStatsService, StatsService>();
         services.AddTransient<IMakeService, MakeService>();
         services.AddTransient<ICityService, CityService>();
+        services.AddTransient<IEmailSender>(
+                 serviceProvider => new SendGridEmailSender(Common.Encoding.Base64Decode(this.configuration.GetSection("SendGrid:ApiKey").Value)));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

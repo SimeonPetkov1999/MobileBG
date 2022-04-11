@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Data\MobileBG.Data.Models\MobileBG.Data.Models.csproj" />
     <ProjectReference Include="..\..\Web\MobileBG.Web.ViewModels\MobileBG.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MobileBG.Services.Mapping\MobileBG.Services.Mapping.csproj" />
+    <ProjectReference Include="..\MobileBG.Services.Messaging\MobileBG.Services.Messaging.csproj" />
     <ProjectReference Include="..\MobileBG.Services\MobileBG.Services.csproj" />
   </ItemGroup>
 

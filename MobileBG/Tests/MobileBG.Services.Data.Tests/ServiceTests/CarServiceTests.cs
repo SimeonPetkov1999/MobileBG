@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Configuration;
 using MobileBG.Services.Contracts;
 using MobileBG.Services.Data.Contracts;
+using MobileBG.Services.Messaging;
 using MobileBG.Web.ViewModels;
 using Moq;
 using System.IO;
@@ -15,6 +16,7 @@ public class CarServiceTests
     private Mock<IRepository<CarEntity>> carRepo;
     private Mock<IRepository<ImageEntity>> imageRepo;
     private Mock<ICloudinaryService> cloudinaryService;
+    private Mock<IEmailSender> emailSender;
 
     private ICarService carService;
 
@@ -262,6 +264,7 @@ public class CarServiceTests
                 Price = 5000,
                 CreatedOn = DateTime.Now,
                 IsApproved = false,
+                User = new ApplicationUser() {Email = "test@test.bg" },
             },
         }.AsQueryable();
 
@@ -371,7 +374,8 @@ public class CarServiceTests
         this.carRepo = new Mock<IRepository<CarEntity>>();
         this.imageRepo = new Mock<IRepository<ImageEntity>>();
         this.cloudinaryService = new Mock<ICloudinaryService>();
-        this.carService = new CarService(this.carRepo.Object, this.imageRepo.Object, this.cloudinaryService.Object);
+        this.emailSender = new Mock<IEmailSender>();
+        this.carService = new CarService(this.carRepo.Object, this.imageRepo.Object, this.cloudinaryService.Object,this.emailSender.Object);
     }
 
     private SearchCarViewModel CreateSearchModel()

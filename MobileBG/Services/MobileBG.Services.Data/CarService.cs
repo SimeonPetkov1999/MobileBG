@@ -1,5 +1,6 @@
 ﻿namespace MobileBG.Services.Data;
 
+using MobileBG.Services.Messaging;
 using MobileBG.Web.ViewModels;
 using System.Collections.Generic;
 
@@ -8,15 +9,18 @@ public class CarService : ICarService
     private readonly IRepository<CarEntity> carRepo;
     private readonly IRepository<ImageEntity> imageRepo;
     private readonly ICloudinaryService cloudinaryService;
+    private readonly IEmailSender emailSender;
 
     public CarService(
         IRepository<CarEntity> carRepo,
         IRepository<ImageEntity> imageRepo,
-        ICloudinaryService cloudinaryService)
+        ICloudinaryService cloudinaryService,
+        IEmailSender emailSender)
     {
         this.carRepo = carRepo;
         this.imageRepo = imageRepo;
         this.cloudinaryService = cloudinaryService;
+        this.emailSender = emailSender;
     }
 
     public async Task<Guid> CreateCarAsync(CreateCarInputViewModel model, string userId)
@@ -104,12 +108,16 @@ public class CarService : ICarService
     {
         var car = this.carRepo
             .AllAsNoTracking()
+            .Include(x => x.User)
+            .Include(x => x.Make)
+            .Include(x => x.Model)
             .FirstOrDefault(x => x.Id == carId);
 
         if (car != null)
         {
             car.IsApproved = true;
             this.carRepo.Update(car);
+            await this.emailSender.SendEmailAsync("mobile-bg@abv.bg", "MobileBG", car.User.Email, "You car is approved", $"Congratulations, your {car.Make.Name} {car.Model.Name} is approved!");
             await this.carRepo.SaveChangesAsync();
         }
     }

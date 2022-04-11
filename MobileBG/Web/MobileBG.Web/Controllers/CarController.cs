@@ -50,7 +50,7 @@ public class CarController : BaseController
         var userId = this.User.GetId();
         await this.carService.CreateCarAsync(input, userId);
 
-        this.TempData["Success"] = "You successfuly created a car. Wait for approval";
+        this.TempData["Success"] = "You successfuly created a car. You will recieve an email when your car is approved.";
 
         return this.RedirectToAction(nameof(this.Mine), 1);
     }
