@@ -1,0 +1,50 @@
+﻿@using MobileBG.Web.ViewModels.Blogs
+@model BlogInfoViewModel
+
+@section Head
+{
+<style>
+    body {
+        background-color: #e2e2e2;
+    }
+
+    .box {
+        -webkit-box-shadow: 0px 3px 24px 10px rgba(0,0,0,0.28);
+        box-shadow: 0px 3px 24px 10px rgba(0,0,0,0.28);
+    }
+
+</style>
+}
+
+@*<div class="box p-1">
+    <p><img class="img" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg"></p>
+    <h1>@this.Model.Title</h1>
+
+    <div class="post">
+    @Html.Raw(this.Model.Content);
+    </div>
+    </div>*@
+
+<div class="container">
+    <div class = "row">
+        <div class="box card p-4 mt-5 col-lg-9">
+            <img class="card-img-top" style="height: 25rem; object-fit: cover;" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h1 class="card-title">@this.Model.Title</h1>
+                <span><i class="fa fa-calendar"></i>15.1.2022 &#x433;.</span>
+                <span><i class="fa fa-user"></i>MobileBG</span>
+                <p class="card-text">@Html.Raw(this.Model.Content)</p>
+            </div>
+        </div>
+
+@*        <div class="card col-lg-3 mt-5">
+            <div class="card-body">
+                <img class="card-img-top" style="height: 25rem; object-fit: cover;" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg" alt="Card image cap">
+                <h1 class="card-title">@this.Model.Title</h1>
+                <span><i class="fa fa-calendar"></i>15.1.2022 &#x433;.</span>
+                <span><i class="fa fa-user"></i>MobileBG</span>
+                <p class="card-text">@Html.Raw(this.Model.Content)</p>
+            </div>
+        </div>*@
+    </div>
+</div>

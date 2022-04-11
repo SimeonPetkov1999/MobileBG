@@ -19,5 +19,5 @@ public class PagingViewModel
 
     public int ItemsCount { get; set; }
 
-    public int ItemsPerPage { get; set; } = 6;
+    public int ItemsPerPage { get; set; }
 }

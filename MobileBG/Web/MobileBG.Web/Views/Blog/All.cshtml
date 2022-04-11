@@ -1,0 +1,87 @@
+﻿@using MobileBG.Web.ViewModels.Blogs
+@using System.Text.RegularExpressions
+
+@model AllBlogsViewModel
+
+
+@section Head
+{
+<link rel="stylesheet" href="~/css/blog.css">
+}
+
+<h1 class="display-4 text-center">MobileBG Blog</h1>
+<hr />
+
+@{
+    int index = 1;
+}
+@foreach (var item in this.Model.Blogs)
+{
+    var content = @Regex.Replace(item.Content, "<.*?>", String.Empty);
+    try
+    {
+        content = $"{content.Substring(0, 240)}...";
+    }
+    catch (ArgumentOutOfRangeException) { }
+    <div class="blog-card @(index % 2 == 0 ? "alt":"")">
+        <div class="meta">
+            <div class="photo" style="background-image: url(http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg)"></div>
+        </div>
+        <div class="description">
+            <h1>@item.Title</h1>
+            <h2><i class="fa fa-calendar mr"></i> @item.CreatedOn.ToString("dd/MM/yyyy") </h2>
+            <p class="content">@content</p>
+            <p class="read-more">
+                <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none">Read More</a>
+            </p>
+        </div>
+    </div>
+    index++;
+}
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+        }">
+            <a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@Model.FirstPageNumber" ><strong>First</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasPreviousPage) {
+        <text>disabled</text>
+ }">
+            <a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@Model.PreviousPageNumber" ><strong>Previous</strong></a>
+        </li>
+        @for (int i = Model.PageNumber - 2; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 2; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+
+        }
+        <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
+            <a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@Model.NextPageNumber"><strong>Next</strong></a>
+        </li>
+        <li class="page-item @if (!Model.HasNextPage) {
+        <text>disabled</text>
+ }">
+            <a class="page-link" asp-controller="Blog" asp-action="All" asp-route-id="@Model.LastPageNumber" ><strong>Last</strong></a>
+        </li>
+    </ul>
+</nav>
