@@ -2,30 +2,11 @@
 @using MobileBG.Data.Models
 @inject SignInManager<ApplicationUser> SignInManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav me-auto" style="margin-left:auto">
     @if (this.SignInManager.IsSignedIn(this.User))
     {
-        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <div class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Administration
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="Car" asp-action="Unapproved">Unnaproved cars</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="Make" asp-action="All">All makes</a>
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="Make" asp-action="Create">Create make</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="City" asp-action="All">All cities</a>
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="City" asp-action="Create">Create City</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-area="Administration" asp-controller="Blog" asp-action="Create">Add blog</a>
-                </div>
-            </div>
-        }
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @this.User.Identity.Name!</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @this.User.Identity.Name.Split("@")[0]</a>
         </li>
 
         <li class="nav-item">

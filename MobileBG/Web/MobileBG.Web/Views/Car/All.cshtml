@@ -8,7 +8,7 @@
 <form id="search" method="get">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="MakeId"></label>
             <select id='makes' class="form-control" asp-for="MakeId">
                 <option>All</option>
@@ -19,14 +19,14 @@
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="ModelId"></label>
             <select id='models' asp-for="ModelId" class="form-control">
                 <option>All</option>
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="CityId"></label>
             <select class="form-control" asp-for="CityId">
                 <option>All</option>
@@ -37,7 +37,7 @@
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="PetrolTypeId"></label>
             <select class="form-control" asp-for="PetrolTypeId">
                 <option>All</option>
@@ -48,32 +48,32 @@
             </select>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="YearFrom"></label>
             <input asp-for="YearFrom" min="0" class="form-control" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="YearTo"></label>
             <input asp-for="YearTo" min="0" class="form-control" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="MaxPrice"></label>
             <input asp-for="MaxPrice" class="form-control" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="MinPrice"></label>
             <input asp-for="MinPrice" class="form-control" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="MinHorsePower"></label>
             <input asp-for="MinHorsePower" class="form-control" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
             <label asp-for="Order"></label>
             <select asp-for="Order" class="form-control">
                 @foreach (int order in Enum.GetValues(typeof(OrderBy)))
@@ -81,25 +81,27 @@
                     <option value="@order">@Enum.GetName(typeof(OrderBy), order)</option>
                 }
             </select>
-        </div>
 
-        <div class="col-md-2">
-            <input class="btn btn-sm btn-primary mt-1" type="button" onclick="reset()" value="Clear all" />
         </div>
 
     </div>
     <br />
-    <button class="form-control btn-sm btn-success col-md-3" asp-route-id="1" style="width=" 50px" type="submit">Search</button>
+    <div class="btn-group">
+        <button class="btn btn-success mb-3" asp-route-id="1" type="submit">Search</button>
+      @*  <button class="btn btn-btn-sm btn-primary m-1"  type="button" onclick="reset()">Clear all</button>*@
+    </div>
+
+
     <br />
 </form>
 <form id="carsForm"></form>
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row no-gutters">
         @foreach (var car in @Model.Cars)
         {
-            <div class="card p-1 m-2" style="width:16rem;">
-                <a style="text-decoration: none;" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">
-                    <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a class="card p-1 m-1 w-5" style="text-decoration: none;" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">
+                    <img class="card-img-top" style="height: 10rem; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
                         <hr>

@@ -1,6 +1,10 @@
 ﻿@using MobileBG.Web.ViewModels.Blogs
 @model EditBlogViewModel
 
+@{
+    this.ViewData["Title"] = "Edit blog";
+}
+
 @section Head
 {
 <script src="https://cdn.tiny.cloud/1/s9a5l4wdqopspp4ktfwp6zi2etuc1rsvasl67jsf028pma6c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -27,7 +31,7 @@
         </textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-success">Edit</button>
 </form>
 @section Scripts
     {

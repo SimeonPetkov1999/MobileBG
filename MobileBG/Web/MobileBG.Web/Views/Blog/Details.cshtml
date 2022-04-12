@@ -1,6 +1,10 @@
 ﻿@using MobileBG.Web.ViewModels.Blogs
 @model BlogInfoViewModel
 
+@{
+    this.ViewData["Title"] = $"{this.Model.Title}";
+}
+
 @section Head
 {
 <style>
