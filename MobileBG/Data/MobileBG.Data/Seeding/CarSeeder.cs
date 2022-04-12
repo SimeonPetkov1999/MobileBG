@@ -1,6 +1,6 @@
-﻿using MobileBG.Data.Seeding.SeedData.Dtos;
+﻿namespace MobileBG.Data.Seeding;
 
-namespace MobileBG.Data.Seeding;
+using MobileBG.Data.Seeding.SeedData.Dtos;
 
 public class CarSeeder : ISeeder
 {

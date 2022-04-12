@@ -78,7 +78,7 @@ public static class Program
         services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
         // Application services
-        //services.AddTransient<IEmailSender>(
+        // services.AddTransient<IEmailSender>(
         //        serviceProvider => new SendGridEmailSender(""));
     }
 }

@@ -56,7 +56,6 @@ public class BlogService : IBlogService
 
         this.blogRepo.Update(entity);
         await this.blogRepo.SaveChangesAsync();
-
     }
 
     public async Task<BlogDataViewModel> GetAllAsync(int page, int itemsPerPage)

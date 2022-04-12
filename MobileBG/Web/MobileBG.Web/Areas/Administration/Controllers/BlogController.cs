@@ -1,6 +1,6 @@
-﻿using MobileBG.Web.ViewModels.Blogs;
+﻿namespace MobileBG.Web.Areas.Administration.Controllers;
 
-namespace MobileBG.Web.Areas.Administration.Controllers;
+using MobileBG.Web.ViewModels.Blogs;
 
 public class BlogController : AdministrationController
 {

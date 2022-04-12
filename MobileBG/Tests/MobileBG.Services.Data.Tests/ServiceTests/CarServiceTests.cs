@@ -264,7 +264,7 @@ public class CarServiceTests
                 Price = 5000,
                 CreatedOn = DateTime.Now,
                 IsApproved = false,
-                User = new ApplicationUser() {Email = "test@test.bg" },
+                User = new ApplicationUser() { Email = "test@test.bg" },
             },
         }.AsQueryable();
 
@@ -375,7 +375,7 @@ public class CarServiceTests
         this.imageRepo = new Mock<IRepository<ImageEntity>>();
         this.cloudinaryService = new Mock<ICloudinaryService>();
         this.emailSender = new Mock<IEmailSender>();
-        this.carService = new CarService(this.carRepo.Object, this.imageRepo.Object, this.cloudinaryService.Object,this.emailSender.Object);
+        this.carService = new CarService(this.carRepo.Object, this.imageRepo.Object, this.cloudinaryService.Object, this.emailSender.Object);
     }
 
     private SearchCarViewModel CreateSearchModel()
