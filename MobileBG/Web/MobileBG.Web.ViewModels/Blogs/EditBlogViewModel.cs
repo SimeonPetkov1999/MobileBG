@@ -1,7 +1,8 @@
 ﻿namespace MobileBG.Web.ViewModels.Blogs;
-
-public class CreateBlogViewModel
+public class EditBlogViewModel : IMapFrom<BlogEntity>
 {
+    public Guid Id { get; set; }
+
     [Display(Name = "Title")]
     [Required]
     [MinLength(3, ErrorMessage = "Enter a Title with minimum length of 3 symbols")]
@@ -11,8 +12,7 @@ public class CreateBlogViewModel
     [MinLength(50, ErrorMessage = "Enter a Content with minimum length of 50 symbols")]
     public string Content { get; set; }
 
-    [Display(Name = "Select main image")]
+    [Display(Name = "Select new image")]
     [AllowedExtensions(".png", ".jpg", ".jpeg")]
-    [Required(ErrorMessage = "Image is required")]
     public IFormFile Image { get; set; }
 }

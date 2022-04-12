@@ -14,7 +14,7 @@ public class BlogController : BaseController
 
     public async Task<IActionResult> Details(Guid Id)
     {
-        var blog = await this.blogService.GetByIdAsync(Id);
+        var blog = await this.blogService.GetByIdAsync<BlogInfoViewModel>(Id);
 
         return this.View(blog);
     }

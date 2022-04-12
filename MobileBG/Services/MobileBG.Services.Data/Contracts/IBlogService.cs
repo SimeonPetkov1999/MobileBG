@@ -6,7 +6,11 @@ public interface IBlogService
 {
     public Task CreateBlogAsync(CreateBlogViewModel input);
 
-    public Task<BlogInfoViewModel> GetByIdAsync(Guid blogId);
+    public Task DeleteBlogAsync(Guid Id);
+
+    public Task<T> GetByIdAsync<T>(Guid blogId);
 
     public Task<BlogDataViewModel> GetAllAsync(int page, int itemsPerPage);
+
+    public Task EditBlogAsync(EditBlogViewModel model);
 }

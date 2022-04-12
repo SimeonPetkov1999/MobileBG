@@ -16,35 +16,26 @@
 </style>
 }
 
-@*<div class="box p-1">
-    <p><img class="img" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg"></p>
-    <h1>@this.Model.Title</h1>
 
-    <div class="post">
-    @Html.Raw(this.Model.Content);
-    </div>
-    </div>*@
-
+<form id="delete" method="post"></form>
 <div class="container">
-    <div class = "row">
-        <div class="box card p-4 mt-5 col-lg-9">
-            <img class="card-img-top" style="height: 25rem; object-fit: cover;" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h1 class="card-title">@this.Model.Title</h1>
-                <span><i class="fa fa-calendar"></i>15.1.2022 &#x433;.</span>
-                <span><i class="fa fa-user"></i>MobileBG</span>
-                <p class="card-text">@Html.Raw(this.Model.Content)</p>
+
+    <partial name="_MessagePartial">
+        <div class="row">
+            <div class="box card p-4 mt-5 mb-5 col-lg-12">
+                <img class="card-img-top" style="height: 25rem; object-fit: cover;" src="@this.Model.ImageUrl">
+                @if (this.User.IsInRole("Administrator"))
+                {
+                    <a asp-area="Administration" asp-controller="Blog" asp-action="Edit" asp-route-id="@this.Model.Id" style="width:4rem; position:absolute" class="btn btn-sm btn-warning" type="button">Edit</a>
+                    <button form="delete" asp-area="Administration" asp-controller="Blog" asp-action="Delete" asp-route-id="@this.Model.Id" style="width:4rem; position:absolute; margin-left:4rem" class="btn btn-sm btn-danger" type="submit">Delete</button>
+                }
+
+                <div class="card-body">
+                    <h1 class="card-title">@this.Model.Title</h1>
+                    <span><i class="fa fa-calendar"></i> @this.Model.CreatedOn.ToString("dd/MM/yyyy") &nbsp</span>
+                    <span><i class="fa fa-user"></i> MobileBG</span>
+                    <p class="card-text">@Html.Raw(this.Model.Content)</p>
+                </div>
             </div>
         </div>
-
-@*        <div class="card col-lg-3 mt-5">
-            <div class="card-body">
-                <img class="card-img-top" style="height: 25rem; object-fit: cover;" src="http://res.cloudinary.com/dwibqwxne/image/upload/v1649411737/MobileBG/3139c07d-fb38-47a2-bd11-e6c4371b70ae.jpg" alt="Card image cap">
-                <h1 class="card-title">@this.Model.Title</h1>
-                <span><i class="fa fa-calendar"></i>15.1.2022 &#x433;.</span>
-                <span><i class="fa fa-user"></i>MobileBG</span>
-                <p class="card-text">@Html.Raw(this.Model.Content)</p>
-            </div>
-        </div>*@
-    </div>
 </div>

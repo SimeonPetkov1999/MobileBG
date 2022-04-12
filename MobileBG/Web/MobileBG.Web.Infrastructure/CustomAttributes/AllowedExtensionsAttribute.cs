@@ -28,6 +28,17 @@ public class AllowedExtensionsAttribute : ValidationAttribute
             }
         }
 
+        var singleFile = value as IFormFile;
+
+        if (singleFile != null)
+        {
+            var extension = Path.GetExtension(singleFile.FileName);
+            if (!this.extensions.Contains(extension.ToLower()))
+            {
+                return new ValidationResult($"({extension}) files are not allowed!");
+            }
+        }
+
         return ValidationResult.Success;
     }
 }
