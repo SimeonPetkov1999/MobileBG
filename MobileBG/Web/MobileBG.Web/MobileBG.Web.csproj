@@ -73,6 +73,9 @@
     <Content Update="wwwroot\logo.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\MobileBG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\user.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

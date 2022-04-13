@@ -34,7 +34,7 @@ public class CarServiceTests
         var carId = Guid.NewGuid();
         var cars = new List<CarEntity>()
         {
-            new() { Id = carId },
+            new() { Id = carId, Model = new() { }, Make = new() { }, PetrolType = new() { }, City = new() },
             new() { Id = Guid.NewGuid() },
         }.AsQueryable();
 
