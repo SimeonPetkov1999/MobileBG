@@ -285,12 +285,12 @@ public class CarService : ICarService
 
         query = input.Order switch
         {
-            OrderBy.DateAdded => query.OrderBy(x => x.CreatedOn),
+            OrderBy.DateAdded => query.OrderByDescending(x => x.CreatedOn),
             OrderBy.PriceAsc => query.OrderBy(x => x.Price),
             OrderBy.PriceDesc => query.OrderByDescending(x => x.Price),
             OrderBy.Newest => query.OrderByDescending(x => x.YearMade),
             OrderBy.Oldest => query.OrderBy(x => x.YearMade),
-            _ => query.OrderBy(x => x.CreatedOn),
+            _ => query.OrderByDescending(x => x.CreatedOn),
         };
         return query;
     }

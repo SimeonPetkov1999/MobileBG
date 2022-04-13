@@ -46,6 +46,9 @@
     .button-box {
         margin-top: 20px;
     }
+    .bg-blue{
+        background-color:#00A2ED;
+    }
 </style>
 }
 
@@ -53,7 +56,7 @@
     <div class="row">
         <div class="col">
             <span style="font-family:Monaco, sans-serif; font-size:25px">@this.ViewData["Title"]</span>
-            <span style="float:right; font-size:20px; margin-right: 26px" class="badge rounded-pill bg-info text-dark">@this.Model.Price Lv.</span>
+            <span style="float:right; font-size:20px; margin-right: 26px" class="badge rounded-pill bg-blue text-dark">@this.Model.Price Lv.</span>
             <div class="fotorama" data-allowfullscreen="native" data-nav="thumbs" data-width="500">
                 @foreach (var link in this.Model.Images)
                 {
@@ -62,14 +65,14 @@
             </div>
         </div>
         <form id="edit"></form>
-        <form id="pdf" method="post"></form>
+        <form id="pdf"></form>
         <form id="delete" method="post"></form>
         <div class="col">
             @if (await this.carService.ValidateUserOwnsCarAsync(this.User.GetId(), this.Model.Id) || this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <div class="button-box">
                     <button form="edit" class="btn btn-warning btn-sm" type="submit" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id">Edit</button>
-                    <button form="pdf" class="btn btn-success btn-sm" type="submit" asp-controller="Car" asp-action="" asp-route-id="@this.Model.Id">Download PDF</button>
+                    <button form="pdf" class="btn btn-success btn-sm" type="submit" asp-controller="Car" asp-action="Pdf" asp-route-id="@this.Model.Id">Download PDF</button>
                     <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-controller="Car" asp-action="Delete" asp-route-id="@this.Model.Id">Delete</button>
                 </div>
             }

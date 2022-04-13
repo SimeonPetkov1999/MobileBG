@@ -1,5 +1,6 @@
 ﻿namespace MobileBG.Web.Controllers;
 using MobileBG.Common;
+using OpenHtmlToPdf;
 
 public class CarController : BaseController
 {
@@ -195,5 +196,30 @@ public class CarController : BaseController
         };
 
         return this.View(viewModel);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> Pdf(Guid Id)
+    {
+        var carIsValid = await this.carService.ValidateCarExistsAsync(Id);
+        var userOwnsCar = await this.carService.ValidateUserOwnsCarAsync(this.User.GetId(), Id);
+
+        if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName) && (carIsValid == false || userOwnsCar == false))
+        {
+            return this.NotFound();
+        }
+
+        var car = await this.carService.SingleCarAsync(Id);
+
+        var viewHtml = await this.RenderViewAsync("Pdf", car);
+
+        var pdf = OpenHtmlToPdf.Pdf
+            .From(viewHtml)
+            .OfSize(PaperSize.A4)
+            .Landscape()
+            .Content();
+
+        return this.File(pdf, "application/octet-stream", $"{car.Make}_{car.Model}.pdf");
     }
 }
