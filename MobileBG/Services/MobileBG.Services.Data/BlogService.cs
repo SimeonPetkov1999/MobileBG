@@ -62,7 +62,7 @@ public class BlogService : IBlogService
     {
         var blogs = await this.blogRepo
             .AllAsNoTracking()
-            .OrderBy(x => x.CreatedOn)
+            .OrderByDescending(x => x.CreatedOn)
             .Skip((page - 1) * itemsPerPage)
             .Take(itemsPerPage)
             .To<BlogInfoViewModel>()
