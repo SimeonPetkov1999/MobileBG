@@ -10,23 +10,21 @@
 <form id="carsForm"></form>
 <form id="edit"></form>
 <form id="delete" method="post"></form>
-<div class="container">
-    <div class="row">
+<h1 class="text-center display-4">My cars</h1>
+<div class="container-fluid">
+    <div class="row no-gutters">
         @foreach (var car in @Model.Cars)
         {
-              <div class="card p-1 m-2" style="width:16rem;">
-                <img class="card-img-top" style="height: 160px; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
-              <div class="card-body">
-                    <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
-                      <hr>
-                    <p class="card-text">Horse Power: @(car.HorsePower) </p>                   
-                    <p class="card-text">Price: @((int)car.Price) BGN</p>                   
-                </div>      
-                <div class="card-footer">
-                    <button form="carsForm" class="btn btn-primary btn-sm" type="submit" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">View More</button>
-                    <button form="edit" class="btn btn-warning btn-sm ml-1 mr-1" type="submit"  asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id">Edit</button>
-                    <button form="delete" class="btn btn-danger btn-sm" type="submit"  asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id">Delete</button>
-                </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a class="card p-1 m-1 w-5" style="text-decoration: none;" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">
+                    <img class="card-img-top" style="height: 10rem; object-fit: cover;" src="@car.ImageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:17px;">@car.MakeName @car.ModelName</h5>
+                        <hr>
+                        <p class="card-text">Horse Power: @(car.HorsePower) </p>
+                        <p class="card-text">Price: @((int)car.Price) BGN</p>
+                    </div>
+                </a>
             </div>
         }
     </div>

@@ -11,6 +11,8 @@ public class EditCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
     [Display(Name = "Car model")]
     public Guid ModelId { get; set; }
 
+    public string ModelName { get; set; } //Initial model name
+
     [Required(ErrorMessage = "Petrol type is required")]
     [Display(Name = "Petrol type")]
     public Guid PetrolTypeId { get; set; }

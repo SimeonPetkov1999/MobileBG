@@ -1,5 +1,10 @@
 ﻿@using MobileBG.Common
 @using MobileBG.Web.ViewModels.Cars
+@using MobileBG.Web.Infrastructure;
+@using MobileBG.Services.Data.Contracts;
+
+@inject ICarService carService;
+
 @model SingleCarViewModel
 @{
     this.ViewData["Title"] = this.Model.Make + "  " + this.Model.Model;
@@ -37,6 +42,10 @@
     .number1 {
         font-weight: 500
     }
+
+    .button-box {
+        margin-top: 20px;
+    }
 </style>
 }
 
@@ -52,7 +61,18 @@
                 }
             </div>
         </div>
+        <form id="edit"></form>
+        <form id="pdf" method="post"></form>
+        <form id="delete" method="post"></form>
         <div class="col">
+            @if (await this.carService.ValidateUserOwnsCarAsync(this.User.GetId(), this.Model.Id) || this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <div class="button-box">
+                    <button form="edit" class="btn btn-warning btn-sm" type="submit" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id">Edit</button>
+                    <button form="pdf" class="btn btn-success btn-sm" type="submit" asp-controller="Car" asp-action="" asp-route-id="@this.Model.Id">Download PDF</button>
+                    <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-controller="Car" asp-action="Delete" asp-route-id="@this.Model.Id">Delete</button>
+                </div>
+            }
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-tachometer-alt"></i>Horse power:  @this.Model.HorsePower</li>
                 <li class="list-group-item"><i style="margin-right:28px" class="fa-lg fas fa-road"></i>KM: @this.Model.Km  </li>

@@ -102,7 +102,7 @@ public class CarController : BaseController
         var userId = this.User.GetId();
         var userIsOwner = await this.carService.ValidateUserOwnsCarAsync(userId, Id);
 
-        if (userIsOwner)
+        if (userIsOwner || this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             await this.carService.DeleteCarAsync(Id);
             this.TempData["Success"] = "You succesfully deleted the car!";
@@ -140,10 +140,11 @@ public class CarController : BaseController
     public async Task<IActionResult> Edit(Guid Id)
     {
         var carIsValid = await this.carService.ValidateCarExistsAsync(Id);
+        var userOwnsCar = await this.carService.ValidateUserOwnsCarAsync(this.User.GetId(), Id);
 
-        if (carIsValid == false)
+        if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName) && (carIsValid == false || userOwnsCar == false))
         {
-            this.NotFound();
+            return this.NotFound();
         }
 
         var model = await this.carService.GetCarDataAsync(Id);
