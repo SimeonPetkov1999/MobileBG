@@ -46,8 +46,9 @@
     .button-box {
         margin-top: 20px;
     }
-    .bg-blue{
-        background-color:#00A2ED;
+
+    .bg-blue {
+        background-color: #00A2ED;
     }
 </style>
 }
@@ -92,7 +93,11 @@
                 <div class="d-flex align-items-center">
                     <div class="image"> <img src="~/user.png" class="rounded" width="135"> </div>
                     <div class="ml-3">
-                        <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4><span>+359887188766</span>
+                        <h4 class="mb-0 mt-0" style="font-size:small">@this.Model.UserName.Split('@')[0]</h4>
+                        @if (this.Model.PhoneNumber != null)
+                        {
+                            <span>@this.Model.PhoneNumber</span>
+                        }
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
                             <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">@this.Model.UsersCars</span> </div>
                         </div>

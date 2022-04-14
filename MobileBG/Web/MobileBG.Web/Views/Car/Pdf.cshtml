@@ -29,19 +29,22 @@
     <br />
 
     <table class="table table-bordered border-primary p-1">
-       <tr>
-           <td class="p-4" style="font-size:50px; border: 5px solid">Year: @this.Model.YearMade</td>
-           <td class="p-4" style="font-size:50px; border: 5px solid">Horse power: @this.Model.HorsePower</td>
-           <td class="p-4" style="font-size:50px; border: 5px solid">Km: @this.Model.Km</td>
-       </tr>                                            
-        <tr>                                            
-           <td class="p-4" style="font-size:50px; border: 5px solid">City: @this.Model.CityName</td>
-           <td class="p-4" style="font-size:50px; border: 5px solid">Petrol type: @this.Model.PetrolType</td>
-           <td class="p-4" style="font-size:50px; border: 5px solid; border-right-color:black; border-bottom-color:black; color:red">Price: @this.Model.Price lv.</td>
-       </tr>
+        <tr>
+            <td class="p-4" style="font-size:50px; border: 5px solid">Year: @this.Model.YearMade</td>
+            <td class="p-4" style="font-size:50px; border: 5px solid">Horse power: @this.Model.HorsePower</td>
+            <td class="p-4" style="font-size:50px; border: 5px solid">Km: @this.Model.Km</td>
+        </tr>
+        <tr>
+            <td class="p-4" style="font-size:50px; border: 5px solid">City: @this.Model.CityName</td>
+            <td class="p-4" style="font-size:50px; border: 5px solid">Petrol type: @this.Model.PetrolType</td>
+            <td class="p-4" style="font-size:50px; border: 5px solid; border-right-color:black; border-bottom-color:black; color:red">Price: @this.Model.Price lv.</td>
+        </tr>
     </table>
 
-    <p class="text-center" style="font-size:80px; margin-top:40px">Phone number: +359887188722</p>
+    @if (this.Model.PhoneNumber != null)
+    {
+        <p class="text-center" style="font-size:80px; margin-top:40px">Phone number: @this.Model.PhoneNumber</p>
+    }
 
 
 </body>

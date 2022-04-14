@@ -28,6 +28,8 @@ public class SingleCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
 
     public string UserName { get; set; }
 
+    public string PhoneNumber { get; set; }
+
     public int UsersCars { get; set; }
 
     public void CreateMappings(IProfileExpression configuration)
@@ -38,6 +40,7 @@ public class SingleCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
             .ForMember(m => m.Model, opt => opt.MapFrom(x => x.Model.Name))
             .ForMember(m => m.PetrolType, opt => opt.MapFrom(x => x.PetrolType.Name))
             .ForMember(m => m.YearMade, opt => opt.MapFrom(x => x.YearMade))
-            .ForMember(m => m.UserName, opt => opt.MapFrom(x => x.User.Email));
+            .ForMember(m => m.UserName, opt => opt.MapFrom(x => x.User.Email))
+            .ForMember(m => m.PhoneNumber, opt => opt.MapFrom(x => x.User.PhoneNumber));
     }
 }
