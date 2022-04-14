@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <!--<UserSecretsId>aspnet-MobileBG-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>-->
     <LangVersion>latest</LangVersion>
+    <UserSecretsId>ee2c54e5-3063-4547-a3d3-2f40df423647</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">

@@ -55,6 +55,12 @@ public class Startup
         services.AddTransient<IBlogService, BlogService>();
         services.AddTransient<IEmailSender>(
                  serviceProvider => new SendGridEmailSender(Common.Encoding.Base64Decode(this.configuration.GetSection("SendGrid:ApiKey").Value)));
+
+        services.AddAuthentication().AddFacebook(facebookOptions =>
+        {
+            facebookOptions.AppId = this.configuration["Facebook:AppId"];
+            facebookOptions.AppSecret = this.configuration["Facebook:AppSecret"];
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
