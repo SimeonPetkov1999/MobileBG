@@ -201,7 +201,7 @@ public class CarService : ICarService
         car.HorsePower = input.HorsePower;
         car.Km = input.Km;
 
-        if (input.ImageUrls != null)
+        if (input.Images != null)
         {
             var links = new List<string>();
             foreach (var imageFile in input.Images)
