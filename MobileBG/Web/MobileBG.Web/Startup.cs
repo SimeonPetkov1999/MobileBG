@@ -1,4 +1,6 @@
 ﻿namespace MobileBG.Web;
+
+using MobileBG.Web.Hubs;
 using System.Reflection;
 using System.Text;
 
@@ -36,6 +38,7 @@ public class Startup
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddSingleton(this.configuration);
+        services.AddSignalR();
 
         // Data repositories
         services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -102,6 +105,7 @@ public class Startup
                     endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                     endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                     endpoints.MapRazorPages();
+                    endpoints.MapHub<ChatHub>("/chatHub");
                 });
     }
 }

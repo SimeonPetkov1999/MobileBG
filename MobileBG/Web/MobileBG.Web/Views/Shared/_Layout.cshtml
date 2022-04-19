@@ -44,6 +44,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="All">Blog</a>
                         </li>
+                         @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Chat">Chat</a>
+                            </li>
+                        }
 
                         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {

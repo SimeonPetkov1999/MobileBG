@@ -335,3 +335,5 @@ ASALocalRun/
 
 /Web/MobileBG.Web/appsettings.json
 MobileBG/Web/MobileBG.Web/appsettings.json
+
+MobileBG/Web/MobileBG.Web/wwwroot/lib
