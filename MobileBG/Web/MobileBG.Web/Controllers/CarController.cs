@@ -83,11 +83,11 @@ public class CarController : BaseController
 
         var userId = this.User.GetId();
 
-        var model = await this.carService.AllCarsForUserAsync(userId, id, GlobalConstants.ItemsPerPage);
+        var model = await this.carService.AllCarsForUserAsync(userId, id, GlobalConstants.CarsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
-            ItemsPerPage = GlobalConstants.ItemsPerPage,
+            ItemsPerPage = GlobalConstants.CarsPerPage,
             PageNumber = id,
             ItemsCount = model.Count,
             Cars = model.Cars,
@@ -120,7 +120,7 @@ public class CarController : BaseController
             return this.NotFound();
         }
 
-        var model = await this.carService.AllApprovedCarsAsync(input, id, GlobalConstants.ItemsPerPage);
+        var model = await this.carService.AllApprovedCarsAsync(input, id, GlobalConstants.CarsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
@@ -129,7 +129,7 @@ public class CarController : BaseController
             PetrolTypes = await this.dropDownDataService.GetAllPetrolTypesAsync(),
             Cars = model.Cars,
             ItemsCount = model.Count,
-            ItemsPerPage = GlobalConstants.ItemsPerPage,
+            ItemsPerPage = GlobalConstants.CarsPerPage,
             PageNumber = id,
         };
 
@@ -185,11 +185,11 @@ public class CarController : BaseController
             return this.NotFound();
         }
 
-        var model = await this.carService.AllCarsForUserAsync(Id, page, GlobalConstants.ItemsPerPage);
+        var model = await this.carService.AllCarsForUserAsync(Id, page, GlobalConstants.CarsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
-            ItemsPerPage = GlobalConstants.ItemsPerPage,
+            ItemsPerPage = GlobalConstants.CarsPerPage,
             PageNumber = page,
             ItemsCount = model.Count,
             Cars = model.Cars,

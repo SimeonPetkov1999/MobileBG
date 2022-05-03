@@ -18,11 +18,11 @@ public class CarController : AdministrationController
             return this.NotFound();
         }
 
-        var model = await this.carService.AllUnapprovedCarsAsync(id, GlobalConstants.ItemsPerPage);
+        var model = await this.carService.AllUnapprovedCarsAsync(id, GlobalConstants.CarsPerPage);
 
         var viewModel = new SearchCarViewModel()
         {
-            ItemsPerPage = GlobalConstants.ItemsPerPage,
+            ItemsPerPage = GlobalConstants.CarsPerPage,
             PageNumber = id,
             ItemsCount = model.Count,
             Cars = model.Cars,
