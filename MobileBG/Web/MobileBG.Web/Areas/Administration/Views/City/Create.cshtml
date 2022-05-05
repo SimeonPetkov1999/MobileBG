@@ -5,13 +5,13 @@
     this.ViewData["Title"] = "Create city";
 }
 
-<h1 class="text-center">Create City</h1>
+<h1 class="text-center">Създай град</h1>
 
 <form class="col-md-4" method="post">
     <div class="form-group">
-        <label asp-for="Name"></label>
+        <label asp-for="Name">Град</label>
         <input asp-for="Name" class="form-control" placeholder="Русе">
         <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Създай</button>
 </form>

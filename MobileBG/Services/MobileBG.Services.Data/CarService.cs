@@ -117,7 +117,7 @@ public class CarService : ICarService
         {
             car.IsApproved = true;
             this.carRepo.Update(car);
-            await this.emailSender.SendEmailAsync("mobile-bg@abv.bg", "MobileBG", car.User.Email, "You car is approved", $"Congratulations, your {car.Make.Name} {car.Model.Name} is approved!");
+            await this.emailSender.SendEmailAsync("mobile-bg@abv.bg", "MobileBG", car.User.Email, "Колата ви е одобрена", $"Честито, колата {car.Make.Name} {car.Model.Name} е одобрена!");
             await this.carRepo.SaveChangesAsync();
         }
     }

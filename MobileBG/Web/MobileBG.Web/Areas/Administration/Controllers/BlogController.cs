@@ -25,7 +25,7 @@ public class BlogController : AdministrationController
         }
 
         await this.blogService.CreateBlogAsync(input);
-        this.TempData["Success"] = $"Blog {input.Title} is created!";
+        this.TempData["Success"] = $"Блог {input.Title} е добавен!";
         return this.RedirectToAction("All", "Blog", new { area = string.Empty });
     }
 
@@ -40,7 +40,7 @@ public class BlogController : AdministrationController
     public async Task<IActionResult> Edit(EditBlogViewModel input)
     {
         await this.blogService.EditBlogAsync(input);
-        this.TempData["Success"] = "Blog is updated!";
+        this.TempData["Success"] = "Блогът е обновен!";
         return this.RedirectToAction("Details", "Blog", new { area = string.Empty, Id = input.Id });
     }
 
@@ -48,7 +48,7 @@ public class BlogController : AdministrationController
     public async Task<IActionResult> Delete(Guid Id)
     {
         await this.blogService.DeleteBlogAsync(Id);
-        this.TempData["Danger"] = "Blog is delted!";
+        this.TempData["Danger"] = "Блогът е изтрит!";
         return this.RedirectToAction("All", "Blog", new { area = string.Empty });
     }
 }

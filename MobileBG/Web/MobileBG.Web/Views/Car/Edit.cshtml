@@ -18,7 +18,7 @@
             <div class="fotorama" data-allowfullscreen="native" data-click="false" data-nav="thumbs" data-width="500" data-height="300">
                 @foreach (var link in this.Model.ImageUrls)
                 {
-                    <div data-img="@link" width="400"> <button type="button" class="btn btn-sm btn-danger" onclick="post('@link')">Delete</button> </div>
+                    <div data-img="@link" width="400"> <button type="button" class="btn btn-sm btn-danger" onclick="post('@link')">Изтрий</button> </div>
                 }
             </div>
             <form method="post" enctype="multipart/form-data">              
@@ -88,13 +88,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Description"></label>
+                    <label asp-for="Description">Описание</label>
                     <textarea asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="small text-danger"></span>
                 </div>
 
                   <div class="form-group">
-                    <label> Choose maximum 5 images (.jpg, .png). Max file size is 3mb!</label>
+                    
                     <input type="file" name="Images" accept=".png,.jpg" multiple class="form-control" />
                     </div>
                 <button type="submit" class="btn btn-primary">Update</button>

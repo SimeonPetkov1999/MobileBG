@@ -25,9 +25,9 @@
                         <p class="card-text">Price: @((int)car.Price) BGN</p>
                 </div>
                 <div class="card-footer">
-                    <button form="carsForm" class="btn btn-primary btn-sm m-1" type="submit" asp-area="" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">View</button>
-                    <button form="approve" class="btn btn-success btn-sm m-1" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Approve" asp-route-id="@car.Id">Approve</button>
-                    <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id">Delete</button>
+                    <button form="carsForm" class="btn btn-primary btn-sm m-1" type="submit" asp-area="" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">Виж</button>
+                    <button form="approve" class="btn btn-success btn-sm m-1" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Approve" asp-route-id="@car.Id">Одобри</button>
+                    <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-area="Administration" asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id">Изтрий</button>
                 </div>
             </div>
         }

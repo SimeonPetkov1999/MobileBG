@@ -36,7 +36,7 @@ public class CarController : AdministrationController
     public async Task<IActionResult> Approve(Guid Id)
     {
         await this.carService.ApproveCarAsync(Id);
-        this.TempData["Success"] = "Car is approved!";
+        this.TempData["Success"] = "Колата е одобрена!";
         return this.RedirectToAction(nameof(this.Unapproved), 1);
     }
 
@@ -45,7 +45,7 @@ public class CarController : AdministrationController
     public async Task<IActionResult> Delete(Guid Id)
     {
         await this.carService.DeleteCarAsync(Id);
-        this.TempData["Danger"] = "Car is deleted";
+        this.TempData["Danger"] = "Колата е изтрита";
         return this.RedirectToAction(nameof(this.Unapproved), 1);
     }
 }

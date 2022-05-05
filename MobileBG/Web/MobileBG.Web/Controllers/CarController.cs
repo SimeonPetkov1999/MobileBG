@@ -51,7 +51,7 @@ public class CarController : BaseController
         var userId = this.User.GetId();
         await this.carService.CreateCarAsync(input, userId);
 
-        this.TempData["Success"] = "You successfuly created a car. You will recieve an email when your car is approved.";
+        this.TempData["Success"] = "Колата е създадена успешно. Ще получите имейл когато е одобрена от администратор.";
 
         return this.RedirectToAction(nameof(this.Mine), 1);
     }
@@ -106,7 +106,7 @@ public class CarController : BaseController
         if (userIsOwner || this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             await this.carService.DeleteCarAsync(Id);
-            this.TempData["Success"] = "You succesfully deleted the car!";
+            this.TempData["Success"] = "Колата е изтрита!";
         }
 
         return this.RedirectToAction(nameof(this.Mine), 1);
@@ -163,7 +163,7 @@ public class CarController : BaseController
         if (this.ModelState.IsValid)
         {
             await this.carService.UpdateCarDataAsync(input);
-            this.TempData["Success"] = "You succesfully updated the car! Wait for approval.";
+            this.TempData["Success"] = "Успешно одобрихте колата! Ще получите имейл когато е одобрена.";
             return this.RedirectToAction(nameof(this.Mine), 1);
         }
 

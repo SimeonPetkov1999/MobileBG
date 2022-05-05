@@ -2,34 +2,34 @@
 
 public class SearchCarViewModel : PagingViewModel
 {
-    [Display(Name = "Make")]
+    [Display(Name = "Модел")]
     public Guid? MakeId { get; set; }
 
-    [Display(Name = "Model")]
+    [Display(Name = "Марка")]
     public Guid? ModelId { get; set; }
 
-    [Display(Name = "Petrol Type")]
+    [Display(Name = "Гориво")]
     public Guid? PetrolTypeId { get; set; }
 
-    [Display(Name = "City")]
+    [Display(Name = "Град")]
     public Guid? CityId { get; set; }
 
-    [Display(Name = "Year from")]
+    [Display(Name = "Година от")]
     public int? YearFrom { get; set; }
 
-    [Display(Name = "Year to")]
+    [Display(Name = "Година до")]
     public int? YearTo { get; set; }
 
-    [Display(Name = "Min Horse Power")]
+    [Display(Name = "Конски сили (MIN)")]
     public int? MinHorsePower { get; set; }
 
-    [Display(Name = "Min price")]
+    [Display(Name = "Конски сили (MAX)")]
     public decimal? MinPrice { get; set; }
 
-    [Display(Name = "Max price")]
+    [Display(Name = "Максимална цена")]
     public decimal? MaxPrice { get; set; }
 
-    [Display(Name = "Order by")]
+    [Display(Name = "Подреди по")]
     public OrderBy? Order { get; set; }
 
     // Data for dropdown

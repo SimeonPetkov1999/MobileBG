@@ -19,11 +19,11 @@ public class ModelController : AdministrationController
 
         if (!isCreated)
         {
-            this.TempData["Danger"] = "There is already model with this name!";
+            this.TempData["Danger"] = "Модел с това име вече съществува";
             return this.RedirectToAction("Details", "Make", new { Id = makeId });
         }
 
-        this.TempData["Success"] = $"{modelName} added!";
+        this.TempData["Success"] = $"{modelName} е добавена!";
         return this.RedirectToAction("Details", "Make", new { Id = makeId });
     }
 
@@ -34,11 +34,11 @@ public class ModelController : AdministrationController
 
         if (!result.IsDeleted)
         {
-            this.TempData["Danger"] = "You cant delete this model because there are cars associated with it";
+            this.TempData["Danger"] = "Не можете да изтриете този модел, защото има коли асоциирани с нея";
             return this.RedirectToAction("Details", "Make", new { Id = result.MakeId });
         }
 
-        this.TempData["Success"] = "Deleted";
+        this.TempData["Success"] = "Изтрито";
         return this.RedirectToAction("Details", "Make", new { Id = result.MakeId });
     }
 }

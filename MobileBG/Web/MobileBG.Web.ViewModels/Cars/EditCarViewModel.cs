@@ -4,25 +4,25 @@ public class EditCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
     public Guid Id { get; set; }
 
     [Required(ErrorMessage = "Car brand is required")]
-    [Display(Name = "Car brand")]
+    [Display(Name = "Марка")]
     public Guid MakeId { get; set; }
 
     [Required(ErrorMessage = "Car model is required")]
-    [Display(Name = "Car model")]
+    [Display(Name = "Модел")]
     public Guid ModelId { get; set; }
 
     public string ModelName { get; set; } //Initial model name
 
     [Required(ErrorMessage = "Petrol type is required")]
-    [Display(Name = "Petrol type")]
+    [Display(Name = "Гориво")]
     public Guid PetrolTypeId { get; set; }
 
     [Required(ErrorMessage = "City is required")]
-    [Display(Name = "City")]
+    [Display(Name = "Град")]
     public Guid CityId { get; set; }
 
     [Required(ErrorMessage = "Year is required")]
-    [Display(Name = "Year")]
+    [Display(Name = "Година")]
     [Range(1950, 2022, ErrorMessage = "The Year must be between {1} and {2}!")]
     public int YearMade { get; set; }
 
@@ -32,12 +32,12 @@ public class EditCarViewModel : IMapFrom<CarEntity>, IHaveCustomMappings
     public int Km { get; set; }
 
     [Required(ErrorMessage = "Horse Power is required")]
-    [Display(Name = "Horse Power")]
+    [Display(Name = "Конски сили")]
     [Range(10, 1000, ErrorMessage = "The Horse Power must be between {1} and {2}!")]
     public int HorsePower { get; set; }
 
     [Required(ErrorMessage = "Price is required")]
-    [Display(Name = "Price (in BGN)")]
+    [Display(Name = "Цена ")]
     [Range(100d, 1_000_000d, ErrorMessage = "Price must be between {1} and {2}!")]
     public decimal Price { get; set; }
 

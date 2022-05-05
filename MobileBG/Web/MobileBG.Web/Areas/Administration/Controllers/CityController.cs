@@ -40,7 +40,7 @@ public class CityController : AdministrationController
         }
 
         await this.cityService.CreateCityAsync(inputModel.Name);
-        this.TempData["Success"] = $"City with name {inputModel.Name} created";
+        this.TempData["Success"] = $"Град с име {inputModel.Name} е създаден";
         return this.RedirectToAction(nameof(this.All));
     }
 
@@ -50,11 +50,11 @@ public class CityController : AdministrationController
         var isDeleted = await this.cityService.DeleteCityAsync(Id);
         if (!isDeleted)
         {
-            this.TempData["Danger"] = "You can't delete this city because there are cars assosiated with it!";
+            this.TempData["Danger"] = "Не можета да изтриете този град, защото има обяви асоциирани с него!";
             return this.RedirectToAction(nameof(this.All));
         }
 
-        this.TempData["Success"] = $"City is deleted";
+        this.TempData["Success"] = $"Градът е изтрит";
         return this.RedirectToAction(nameof(this.All));
     }
 }

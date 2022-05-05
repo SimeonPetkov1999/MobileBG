@@ -71,19 +71,19 @@
             @if (await this.carService.ValidateUserOwnsCarAsync(this.User.GetId(), this.Model.Id) || this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <div class="button-box">
-                    <button form="edit" class="btn btn-warning btn-sm" type="submit" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id">Edit</button>
-                    <button form="pdf" class="btn btn-success btn-sm" type="submit" asp-controller="Car" asp-action="Pdf" asp-route-id="@this.Model.Id">Download PDF</button>
-                    <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-controller="Car" asp-action="Delete" asp-route-id="@this.Model.Id">Delete</button>
+                    <button form="edit" class="btn btn-warning btn-sm" type="submit" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id">Редактирай</button>
+                    <button form="pdf" class="btn btn-success btn-sm" type="submit" asp-controller="Car" asp-action="Pdf" asp-route-id="@this.Model.Id">Изтегли в PDF</button>
+                    <button form="delete" class="btn btn-danger btn-sm" type="submit" asp-controller="Car" asp-action="Delete" asp-route-id="@this.Model.Id">Изтрий</button>
                 </div>
             }
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-tachometer-alt"></i>Price:  <span style="font-size:20px; margin-right: 26px" class="badge rounded-pill bg-blue text-dark">@this.Model.Price Lv.</span></li>
-                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-tachometer-alt"></i>Horse power:  @this.Model.HorsePower</li>
+                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-money-bill-alt"></i>Цена:  <span style="font-size:20px; margin-right: 26px" class="badge rounded-pill bg-blue text-dark">@this.Model.Price Lv.</span></li>
+                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-tachometer-alt"></i>Конски сили:  @this.Model.HorsePower</li>
                 <li class="list-group-item"><i style="margin-right:28px" class="fa-lg fas fa-road"></i>KM: @this.Model.Km  </li>
-                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-gas-pump"></i>Petrol type: @this.Model.PetrolType</li>
-                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-calendar-alt"></i>Year made:   @this.Model.YearMade</li>
-                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-user"></i>Owner:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
-                <li class="list-group-item"><i style="margin-right:35px" class="fa-lg fas fa-building"></i>City:  @this.Model.CityName</li>
+                <li class="list-group-item"><i style="margin-right:30px" class="fa-lg fas fa-gas-pump"></i>Гориво: @this.Model.PetrolType</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-calendar-alt"></i>Година:   @this.Model.YearMade</li>
+                <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-user"></i>Собственик:  @(this.Model.UserName==null? "Admin" : this.Model.UserName.Split('@')[0])</li>
+                <li class="list-group-item"><i style="margin-right:35px" class="fa-lg fas fa-building"></i>Град:  @this.Model.CityName</li>
                 <li class="list-group-item"><i style="margin-right:33px" class="fa-lg fas fa-align-left"></i>@this.Model.Description</li>
             </ul>
         </div>
@@ -99,14 +99,14 @@
                             <span>@this.Model.PhoneNumber</span>
                         }
                         <div class="p-2 mt-2 bg-primary d-flex rounded text-white stats">
-                            <div class="d-flex flex-column"> <span class="articles">Cars</span> <span class="number1">@this.Model.UsersCars</span> </div>
+                            <div class="d-flex flex-column"> <span class="articles">Коли</span> <span class="number1">@this.Model.UsersCars</span> </div>
                         </div>
 
                         @{
                             var parms = new Dictionary<string, string> { { "page", "1" } };
                         }
 
-                        <div class="button mt-2 d-flex flex-row align-items-center"> <a form="user" type="submit" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@this.Model.UserId" class="btn btn-sm btn-primary">View cars</a> </div>
+                        <div class="button mt-2 d-flex flex-row align-items-center"> <a form="user" type="submit" asp-controller="Car" asp-action="ForUser" asp-all-route-data="parms" asp-route-id="@this.Model.UserId" class="btn btn-sm btn-primary">Покажи коли</a> </div>
                     </div>
                 </div>
             </div>

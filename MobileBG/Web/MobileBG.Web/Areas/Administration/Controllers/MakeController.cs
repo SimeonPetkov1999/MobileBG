@@ -35,7 +35,7 @@ public class MakeController : AdministrationController
 
         await this.makeService.CreateMakeAsync(input.Name);
 
-        this.TempData["Success"] = $"You successfully created mak with name {input.Name}";
+        this.TempData["Success"] = $"Успешно създадохте марка с име {input.Name}";
 
         return this.RedirectToAction(nameof(this.All));
     }
@@ -67,13 +67,13 @@ public class MakeController : AdministrationController
     {
         if (!this.ModelState.IsValid)
         {
-            this.TempData["Danger"] = $"Make with name {model.Name} already exist!";
+            this.TempData["Danger"] = $"Марка с име {model.Name} вече съществува!";
             return this.RedirectToAction(nameof(this.Edit), new { Id = model.Id });
         }
 
         await this.makeService.EditMakeAsync(model);
 
-        this.TempData["Success"] = $"You succesfully updated the make name to {model.Name}";
+        this.TempData["Success"] = $"Името е успешно сменено на {model.Name}";
 
         return this.RedirectToAction(nameof(this.Edit), new { Id = model.Id });
     }
@@ -84,11 +84,11 @@ public class MakeController : AdministrationController
         var isDeleted = await this.makeService.DeleteMakeAsync(Id);
         if (!isDeleted)
         {
-            this.TempData["Danger"] = "You cant delete this make because there are models associated with it";
+            this.TempData["Danger"] = "Не можете да изтриете тази марка, защото има модели асоциирани с нея";
             return this.RedirectToAction(nameof(this.All), new { Id = Id });
         }
 
-        this.TempData["Success"] = "Deleted!";
+        this.TempData["Success"] = "Марката е изтрита!";
         return this.RedirectToAction(nameof(this.All), new { Id = Id });
     }
 }

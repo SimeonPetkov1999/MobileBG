@@ -5,13 +5,13 @@
     this.ViewData["Title"] = "Create make";
 }
 
-<h1 class="text-center">Create Make</h1>
+<h1 class="text-center">Създай Марка</h1>
 
 <form class="col-md-4" method="post">
     <div class="form-group">
-        <label asp-for="Name"></label>
+        <label asp-for="Name">Марка</label>
         <input asp-for="Name" class="form-control" placeholder="Audi">
         <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Създай</button>
 </form>

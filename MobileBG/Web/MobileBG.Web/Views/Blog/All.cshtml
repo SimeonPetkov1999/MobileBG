@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="~/css/blog.css">
 }
 <partial name="_MessagePartial">
-    <h1 class="display-4 text-center">MobileBG Blog</h1>
+    <h1 class="display-4 text-center">MobileBG Блог</h1>
     <hr />
 
     @{
@@ -36,7 +36,7 @@
                 <h2><i class="fa fa-calendar mr"></i> @item.CreatedOn.ToString("dd/MM/yyyy") </h2>
                 <p class="content">@content</p>
                 <p class="read-more">
-                    <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none">Read More</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none">Прочети още</a>
                 </p>
             </div>
         </div>
